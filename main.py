@@ -49,35 +49,53 @@ def main():
 
     # We can tune the configuration parameters one by one.
     
-    # 1. Set the sample rate
-    SAMPLE_RATE = 400 # Options: 50, 100, 200, 400, 800, 1000, 1600, 3200
-    sensor.set_sample_rate(SAMPLE_RATE)
-    # 2. Set the number of samples to be averaged per each reading
-    SAMPLE_AVG = 4 # Options: 1, 2, 4, 8, 16, 32
-    sensor.set_fifo_average(SAMPLE_AVG)
-    # 3. Set the ADC range
-    ADC_RANGE = 16384  # Options: 2048, 4096, 8192, 16384
-    sensor.set_adc_range(ADC_RANGE)
-    # 4. Set the Pulse Width
-    PULSE_WIDTH = 411  # Options: 69, 118, 215, 411
-    sensor.set_pulse_width(PULSE_WIDTH)
-    # 5. Set the LED mode
-    LED_MODE = 1  # Options: 1 (red), 2 (red + IR)
-    sensor.set_led_mode(LED_MODE)
-    # 6. Set the LED brightness of each LED
-    LED_POWER = MAX30105_PULSE_AMP_MEDIUM
+    # # 1. Set the sample rate
+    # SAMPLE_RATE = 200 # Options: 50, 100, 200, 400, 800, 1000, 1600, 3200
+    # sensor.set_sample_rate(SAMPLE_RATE)
+    # # 2. Set the number of samples to be averaged per each reading
+    # SAMPLE_AVG = 1 # Options: 1, 2, 4, 8, 16, 32
+    # sensor.set_fifo_average(SAMPLE_AVG)
+    # # 3. Set the ADC range
+    # ADC_RANGE = 16384  # Options: 2048, 4096, 8192, 16384
+    # sensor.set_adc_range(ADC_RANGE)
+    # # 4. Set the Pulse Width
+    # PULSE_WIDTH = 411  # Options: 69, 118, 215, 411
+    # sensor.set_pulse_width(PULSE_WIDTH)
+    # # 5. Set the LED mode
+    # LED_MODE = 1  # Options: 1 (red), 2 (red + IR)
+    # sensor.set_led_mode(LED_MODE)
+    # # 6. Set the LED brightness of each LED
+    # LED_POWER = MAX30105_PULSE_AMP_MEDIUM
     # Options:
-    # MAX30105_PULSE_AMP_LOWEST =  0x02 # 0.4mA  - Presence detection of ~4 inch
-    # MAX30105_PULSE_AMP_LOW =     0x1F # 6.4mA  - Presence detection of ~8 inch
-    # MAX30105_PULSE_AMP_MEDIUM =  0x7F # 25.4mA - Presence detection of ~8 inch
-    # MAX30105_PULSE_AMP_HIGH =    0xFF # 50.0mA - Presence detection of ~12 inch
+    # # MAX30105_PULSE_AMP_LOWEST =  0x02 # 0.4mA  - Presence detection of ~4 inch
+    # # MAX30105_PULSE_AMP_LOW =     0x1F # 6.4mA  - Presence detection of ~8 inch
+    # # MAX30105_PULSE_AMP_MEDIUM =  0x7F # 25.4mA - Presence detection of ~8 inch
+    # # MAX30105_PULSE_AMP_HIGH =    0xFF # 50.0mA - Presence detection of ~12 inch
+    # sensor.set_pulse_amplitude_red(LED_POWER)
+    # sensor.set_pulse_amplitude_it(LED_POWER)    
+    
+    # Set the LED mode
+    LED_MODE = 1
+    sensor.set_led_mode(LED_MODE)
+    
+    # Set the LED brightness of each LED
+    LED_POWER = MAX30105_PULSE_AMP_MEDIUM
     sensor.set_pulse_amplitude_red(LED_POWER)
     sensor.set_pulse_amplitude_it(LED_POWER)
     
-    print("Starting data acquisition...", '\n')
-    sleep(1)
+    # Set the number of samples to be averaged per each reading
+    SAMPLE_AVG = 1
+    sensor.set_fifo_average(SAMPLE_AVG)
 
-    while True:
+    print("Starting data acquisition...")
+    
+    # Set the sample rate
+    SAMPLE_RATE = int(input('SAMPLE_RATE = ')) # Set the variable value by the user.
+    sensor.set_sample_rate(SAMPLE_RATE)
+    
+    sleep(0.5)
+    
+    while True:                    
         # The check() method has to be continuously polled, to check if
         # there are new readings into the sensor's FIFO queue. When new
         # readings are available, this function will put them into the storage.
@@ -87,13 +105,15 @@ def main():
         # *Note: Some sensors have the red and IR registers inverted (or maybe the LEDs swapped)!
         # You can easily check if your sensor is inverted by putting it in LED mode 1: only the red LED should work.
         # If you see the IR LED (use your phone camera to check), then you have to collect IR samples as red ones and viceversa.
-        if sensor.available():
+        if sensor.available():            
             # Access the storage FIFO and gather the readings (integers)
             red_reading = sensor.pop_red_from_storage()
             ir_reading = sensor.pop_ir_from_storage()
 
             # Print the acquired data (so that it can be plotted with a Serial Plotter)
-            print(red_reading) # it is IR in the sensor buyed
+            print(-red_reading+50000) # it is IR in the sensor purchased, it can be different in other sensor
+                
+
 
 
 if __name__ == '__main__':
