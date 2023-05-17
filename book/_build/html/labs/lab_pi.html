@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 11-12: Estimating Pi with a RNG &#8212; The Data Science Labs on Probability</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/lab_pi';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off" href="lab_heartbeat.html" />
+    <link rel="prev" title="Week 10: Evaluating Random Number Generators" href="lab_testing_rng.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    About this Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab_00.html">Week 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_01.html">Week 2: Review of Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_02.html">Week 3-4: Probability as a Frequency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_quantization.html">Week 5-6: Image Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_video_intro.html">Week 7: Acquiring and Manipulating Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_motion.html">Week 8: Motion Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_rng.html">Week 9: Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 11-12: Estimating Pi with a RNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_heartbeat.html">Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability/issues/new?title=Issue%20on%20page%20%2Flabs/lab_pi.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/labs/lab_pi.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 11-12: Estimating Pi with a RNG</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-a-monte-carlo-experiment-span"><span style="color:orange;"> A Monte Carlo Experiment </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-another-estimation-span"><span style="color:orange;"> Another Estimation </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-11-12-estimating-pi-with-a-rng">
+<h1>Week 11-12: Estimating Pi with a RNG<a class="headerlink" href="#week-11-12-estimating-pi-with-a-rng" title="Permalink to this heading">#</a></h1>
+<p><font size="6"> Laboratory 8 </font> <br>
+<font size="3"> Last updated April 24, 2023 </font></p>
+<section id="span-style-color-orange-00-content-span">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<p><font size="5"> Mathematics </font></p>
+<ul class="simple">
+<li><p>probability density function</p></li>
+<li><p>expectation and variance</p></li>
+<li><p>integrals in one dimension</p></li>
+</ul>
+<p><font size="5"> Programming Skills </font></p>
+<ul class="simple">
+<li><p>arrays</p></li>
+</ul>
+<p><font size="5"> Embedded Systems </font></p>
+<ul class="simple">
+<li><p>MicroPython and Thonny</p></li>
+</ul>
+</section>
+<section id="span-style-color-orange-0-required-hardware-span">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>relevant equipment to build an RNG from the previous lab</p></li>
+</ul>
+<h3 style="background-color:lightblue"> Write your name and email below: </h3>
+<p><strong>Name:</strong> me</p>
+<p><strong>Email:</strong> me &#64;purdue.edu</p>
+</section>
+<section id="span-style-color-orange-a-monte-carlo-experiment-span">
+<h2><span style="color:orange;"> A Monte Carlo Experiment </span><a class="headerlink" href="#span-style-color-orange-a-monte-carlo-experiment-span" title="Permalink to this heading">#</a></h2>
+<p>Recall that a uniform random variable <span class="math notranslate nohighlight">\(U\)</span> on the interval <span class="math notranslate nohighlight">\((0,1)\)</span> has probability density function
+$<span class="math notranslate nohighlight">\( f_U(u) = \begin{cases}
+    1 &amp;, 0&lt;u&lt;1 \\
+    0 &amp;, \text{ otherwise}
+\end{cases}. \)</span><span class="math notranslate nohighlight">\(
+So the probability \)</span>U<span class="math notranslate nohighlight">\( takes a value in a subinterval \)</span>(s,t)<span class="math notranslate nohighlight">\( of \)</span>(0,1)<span class="math notranslate nohighlight">\( is exactly the length \)</span>t-s$ of the subinterval.</p>
+<p>More genrerally, a uniform random variable <span class="math notranslate nohighlight">\(V\)</span> on the interval <span class="math notranslate nohighlight">\((a,b)\)</span> has probability density function
+$<span class="math notranslate nohighlight">\( f_V(v) = \begin{cases}
+    \frac{1}{b-a} &amp;, a&lt;v&lt;b \\
+    0 &amp;, \text{ otherwise}
+\end{cases}. \)</span>$</p>
+<section id="span-style-color-red-exercise-span">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#span-style-color-red-exercise-span" title="Permalink to this heading">#</a></h3>
+<p>If <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(U_2\)</span> are uniform random variables on <span class="math notranslate nohighlight">\((0,1)\)</span>, then the ordered pair <span class="math notranslate nohighlight">\((U_1,U_2)\)</span> is distributed uniformly in the square of side length 1 centered at <span class="math notranslate nohighlight">\(\left(\frac12,\frac12\right)\)</span>.
+Define</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+X = 2U_1 - 1, \\
+Y = 2U_2 - 1.
+\end{align*}\]</div>
+<p>How is <span class="math notranslate nohighlight">\((X,Y)\)</span> distributed?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>A Monte Carlo experiment is a technique to study a response by using random samples.
+In our first estimation of <span class="math notranslate nohighlight">\(\pi\)</span>, we will generate a large number of uniform samples inside a square. If we inscribe a circle in the square and count how many points fall inside the circle, the <strong>proportion of points in the circle</strong> will approach the <strong>proportion of the area of the circle within the square</strong>. Suppose the circle has radius <span class="math notranslate nohighlight">\(r\)</span>. Intuitively, the probability a random point will land inside the circle is
+$<span class="math notranslate nohighlight">\( \frac{\text{area of circle}}{\text{area of square}} = \frac{\pi r^2}{(2r)^2} = \frac{\pi r^2}{4r^2} = \frac{\pi}{4}.\)</span>$</p>
+<p>(Here’s)[<strong>add link</strong>] a visualization of this experiment run with 500 samples (points). In the image, 377 points are marked red as being within the circle boundary. If we take the proportion of points in the circle and multiply by 4, we will have an approximation of <span class="math notranslate nohighlight">\(\pi\)</span>.
+In this case <span class="math notranslate nohighlight">\(4 \cdot \frac{377}{500} = 3.016\)</span>, which isn’t that close to <span class="math notranslate nohighlight">\(\pi\)</span>. Let’s use more samples.</p>
+<p><img alt="img" src="../_images/example_monte_carlo.jpg" /></p>
+</section>
+<section id="id1">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>With <span class="math notranslate nohighlight">\((X,Y)\)</span> as defined in Exercise 1, use <code class="docutils literal notranslate"><span class="pre">random.uniform()</span></code> or <code class="docutils literal notranslate"><span class="pre">np.random.uniform()</span></code> to generate <span class="math notranslate nohighlight">\(n=10,000\)</span> random pairs <span class="math notranslate nohighlight">\((X,Y)\)</span> and plot them using a scatter plot. Change the color or marker of the points that fall inside the inscribed circle. You don’t have to draw the circle on your plot.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<section id="id2">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Use the proportion of points in the circle to estimate <span class="math notranslate nohighlight">\(\pi\)</span>. Report the <em>relative and absolute error</em> of your approximation when <span class="math notranslate nohighlight">\(n=\)</span> 5,000; <span class="math notranslate nohighlight">\(n=\)</span> 10,000; <span class="math notranslate nohighlight">\(n=\)</span> 50,000; and <span class="math notranslate nohighlight">\(n=\)</span> 100,000.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>Another way to think about our estimation of <span class="math notranslate nohighlight">\(\pi\)</span> is using a sum of random variables.
+We randomly generate <span class="math notranslate nohighlight">\(n\)</span> points in the square.
+Define the random variables <span class="math notranslate nohighlight">\(Z_1,Z_2,\dots,Z_n\)</span> as
+$<span class="math notranslate nohighlight">\(Z_i = \begin{cases}
+    1 &amp;, \text{ if random point \)</span>i<span class="math notranslate nohighlight">\( is in the circle} \\
+    0 &amp;, \text{ otherwise}
+\end{cases} \quad \text{ for } i=1,2,\dots,n.\)</span><span class="math notranslate nohighlight">\(
+We say \)</span>Z_1,Z_2,\dots,Z_n<span class="math notranslate nohighlight">\( are **indicator variables**.
+Our approximation for \)</span>\pi<span class="math notranslate nohighlight">\( is then
+\)</span><span class="math notranslate nohighlight">\( 4\cdot\frac{Z_1 + Z_2 + \cdots + Z_n}{n}.\)</span>$</p>
+<p>The expected value of <span class="math notranslate nohighlight">\(4Z_i\)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    E[4Z_i] &amp;= (4\cdot 1)\cdot P(\text{point $i$ is in the circle}) + (4\cdot 0)\cdot P(\text{point $i$ is not in the circle}),  \\
+    &amp;= 4\cdot \frac{\pi}{4} + 0, \\
+    &amp;= \pi.
+\end{align*}\]</div>
+</section>
+<section id="id3">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Compute the expected value <span class="math notranslate nohighlight">\(E[(4Z_i)^2]\)</span>.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<section id="id4">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>We know for a random variable <span class="math notranslate nohighlight">\(X\)</span> that <span class="math notranslate nohighlight">\(Var(X)=E[X^2]-(E[X])^2\)</span>.
+Use the formula below to compute the variance of the random variable <span class="math notranslate nohighlight">\(4Z_i\)</span>.
+$<span class="math notranslate nohighlight">\( Var(4Z_i)  = E[(4Z_i)^2] - (E[4Z_i])^2.\)</span>$</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>Remember that for two <strong>independent</strong> random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> and constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, we know that
+$<span class="math notranslate nohighlight">\( Var(X+Y)= Var(X)+Var(Y) \quad \text{and}\quad Var(aX+b) = a^2 Var(X).\)</span><span class="math notranslate nohighlight">\(
+As the last step, let's compute the variance in our estimation of \)</span>\pi$.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    Var\left(4\cdot\frac{Z_1 + Z_2 + \cdots + Z_n}{n} \right) &amp;=  Var\left(\frac{4Z_1 + 4Z_2 + \cdots + 4Z_n}{n} \right), \\
+    &amp;= \frac{1}{n^2}Var(4Z_1 + 4Z_2 + \cdots + 4Z_n), \\
+    &amp;= \frac{1}{n^2}[Var(4Z_1) + Var(4Z_2) + \cdots + Var(4Z_n)], \\
+    &amp;= \frac{1}{n^2}nVar(4Z_1), \quad\quad\text{ since $Var(4Z_i)$ is the same for $i=1,2,\dots,n$},\\
+    &amp;= \frac{Var(4Z_i)}{n}.
+\end{align*}\]</div>
+</section>
+</section>
+<section id="span-style-color-orange-another-estimation-span">
+<h2><span style="color:orange;"> Another Estimation </span><a class="headerlink" href="#span-style-color-orange-another-estimation-span" title="Permalink to this heading">#</a></h2>
+<p>In our Monte Carlo experiment, we needed <span class="math notranslate nohighlight">\(2n\)</span> samples of a uniform distribution to generate our <span class="math notranslate nohighlight">\(n\)</span> random points in the square.
+Let’s try to improve our estimation of <span class="math notranslate nohighlight">\(\pi\)</span>; this time with only <span class="math notranslate nohighlight">\(n\)</span> uniform samples.</p>
+<p>Consider the integral $<span class="math notranslate nohighlight">\( \int_{-1}^1 2 \sqrt{1-x^2}dx = \pi.\)</span>$</p>
+<p>We are going to rearange this integral as an expected value. First, recall this fact: If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable with probability density function <span class="math notranslate nohighlight">\(f_X(x)\)</span> and <span class="math notranslate nohighlight">\(g\)</span> is any real-valued function, then
+$<span class="math notranslate nohighlight">\( E[g(X)] = \int_{-\infty}^\infty g(x)f(x)dx. \)</span>$</p>
+<section id="id5">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is a uniform random variable on <span class="math notranslate nohighlight">\((-1,1)\)</span>.
+What function <span class="math notranslate nohighlight">\(g\)</span> would make
+$<span class="math notranslate nohighlight">\( E[g(X)] = \int_{-\infty}^\infty g(x)f(x)dx = \int_{-1}^1 2 \sqrt{1-x^2}dx = \pi. \)</span>$</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><hr class="docutils" />
+<p><strong>NOTE</strong></p>
+<p>This is a 2-week lab. Turn in the exercises above. Pick up from here during the next lab session.</p>
+<hr class="docutils" />
+<p>With the appropriate function <span class="math notranslate nohighlight">\(g\)</span>, we can approximate <span class="math notranslate nohighlight">\(\pi\)</span>.
+Let <span class="math notranslate nohighlight">\(X_1,X_2,\dots,X_n\)</span> be indepent uniform random variables on the interval <span class="math notranslate nohighlight">\((-1,1)\)</span>. Then,
+$<span class="math notranslate nohighlight">\( E\left[ \frac{g(X_1)+g(X_2)+\cdots + g(X_n)}{n} \right] = \frac 1n E[g(X_1)+g(X_2)+\cdots + g(X_n)] = \frac{nE[g(X_1)]}{n} = \pi.\)</span>$</p>
+</section>
+<section id="id6">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>Generate <span class="math notranslate nohighlight">\(n\)</span> uniform random samples <span class="math notranslate nohighlight">\(x_1,x_2,\dots,x_n\)</span> and calculate the average
+$<span class="math notranslate nohighlight">\( \frac{g(x_1)+g(x_2)+\cdots + g(x_n)}{n}. \)</span>$</p>
+<p>Report the <em>absolute error</em> of your approximation using this method when <span class="math notranslate nohighlight">\(n=\)</span> 5,000; <span class="math notranslate nohighlight">\(n=\)</span> 10,000; <span class="math notranslate nohighlight">\(n=\)</span> 50,000; and <span class="math notranslate nohighlight">\(n=\)</span> 100,000.
+How does it compare to our first method with the circle in the square?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>In the same way we computed the expected value of <span class="math notranslate nohighlight">\(g(X)\)</span>, we can get the expected value of <span class="math notranslate nohighlight">\(g(X)\cdot g(X) = (g(X))^2\)</span> by computing the integral
+$<span class="math notranslate nohighlight">\( E[(g(X))^2] = \int_{-\infty}^\infty (g(x))^2f(x)dx .\)</span>$</p>
+</section>
+<section id="id7">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>What is the value of <span class="math notranslate nohighlight">\(Var(g(X))\)</span>?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>Now, let’s compute the variance in our alternative estimation of <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    Var\left(\frac{g(X_1)+g(X_2)+\cdots + g(X_n)}{n} \right) &amp;= \frac{1}{n^2} Var(g(X_1)+g(X_2)+\cdots + g(X_n)), \\
+    &amp;= \frac{1}{n^2} n Var(g(X_1)), \quad\quad\text{ since $Var(g(X_i))$ is the same for $i=1,2,\dots,n$},\\
+    &amp;= \frac{Var(g(X_1))}{n}.
+\end{align*}\]</div>
+</section>
+<section id="id8">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>How much smaller is the variance in this second method of approximating <span class="math notranslate nohighlight">\(\pi\)</span> compared to the first method?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<section id="id9">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>If we generate a sequence of 16 binary digits, it is simple to convert to a floating point number between 0 and 1. First convert the binary number to base-10 and then divide by <span class="math notranslate nohighlight">\(2^{16}-1\)</span>. Now, we have a way to simulate a uniform random variable on <span class="math notranslate nohighlight">\((0,1)\)</span>, or any interval of our choice.</p>
+<p>Using your “best” RNG according to previous lab on RNGs, estimate <span class="math notranslate nohighlight">\(\pi\)</span> using both methods presented here for different values of <span class="math notranslate nohighlight">\(n\)</span>. Do your estimations of <span class="math notranslate nohighlight">\(\pi\)</span> improve if you use 32 binary digits instead of 16?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove solution</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">circle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">circle</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="c1"># plt.scatter(x,y,c=col,s=1)</span>
+<span class="c1"># plt.axis(&#39;square&#39;)</span>
+<span class="c1"># plt.xlim((-1,1))</span>
+<span class="c1"># plt.ylim((-1,1))</span>
+<span class="c1"># plt.show()</span>
+
+<span class="n">est_1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">col</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="mi">4</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">est_2</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">est_1</span><span class="p">,</span><span class="n">est_2</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.00755265 -0.00065555]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-green-reflection-span">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
+2. What are some things you learned today? <br>
+3. Are there any topics that could use more clarification? <br>
+4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./labs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab_testing_rng.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 10: Evaluating Random Number Generators</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab_heartbeat.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-a-monte-carlo-experiment-span"><span style="color:orange;"> A Monte Carlo Experiment </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-another-estimation-span"><span style="color:orange;"> Another Estimation </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Introduction
+    chapters:
+      - file: labs/lab_00.ipynb
+      - file: labs/lab_01.ipynb
+      - file: labs/lab_02.ipynb
+      - file: labs/lab_quantization.ipynb
+      - file: labs/lab_video_intro.ipynb
+      - file: labs/lab_motion.ipynb
+      - file: labs/lab_rng.ipynb
+      - file: labs/lab_testing_rng.ipynb
+  - caption: Introduction 2
+    chapters:
+      - file: labs/lab_pi.ipynb
+      - file: labs/lab_heartbeat.ipynb

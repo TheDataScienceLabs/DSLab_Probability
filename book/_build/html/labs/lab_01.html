@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 2: Review of Python &#8212; The Data Science Labs on Probability</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/lab_01';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 3-4: Probability as a Frequency" href="lab_02.html" />
+    <link rel="prev" title="Week 1: Introduction" href="lab_00.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    About this Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab_00.html">Week 1: Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 2: Review of Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_02.html">Week 3-4: Probability as a Frequency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_quantization.html">Week 5-6: Image Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_video_intro.html">Week 7: Acquiring and Manipulating Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_motion.html">Week 8: Motion Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_rng.html">Week 9: Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab_pi.html">Week 11-12: Estimating Pi with a RNG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_heartbeat.html">Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability/issues/new?title=Issue%20on%20page%20%2Flabs/lab_01.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/labs/lab_01.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 2: Review of Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-datatypes-and-operators-span"><span style="color:orange;"> 1. Datatypes and Operators </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-functions-and-loops-span"><span style="color:orange;"> 2. Functions and Loops </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-numpy-arrays-span"><span style="color:orange;"> 3. NumPy Arrays </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-plotting-span"><span style="color:orange;"> 4. Plotting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-2-review-of-python">
+<h1>Week 2: Review of Python<a class="headerlink" href="#week-2-review-of-python" title="Permalink to this heading">#</a></h1>
+<p><font size="6"> Laboratory 1 </font> <br>
+<font size="3"> Last updated April 13, 2023 </font></p>
+<section id="span-style-color-orange-00-content-span">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<p><font size="5"> Mathematics </font></p>
+<ul class="simple">
+<li><p>Functions</p></li>
+</ul>
+<p><font size="5"> Programming Skills </font></p>
+<ul class="simple">
+<li><p>Data types and basic operations</p></li>
+<li><p>Lists and arrays</p></li>
+<li><p>Functions</p></li>
+<li><p>Loops and comprehension</p></li>
+<li><p>Plotting</p></li>
+</ul>
+<p><font size="5"> Embedded Systems </font></p>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+</section>
+<section id="span-style-color-orange-0-required-hardware-span">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<h3 style="background-color:lightblue"> Write your name and email below: </h3>
+<p><strong>Name:</strong> me</p>
+<p><strong>Email:</strong> me &#64;purdue.edu</p>
+</section>
+<section id="span-style-color-orange-1-datatypes-and-operators-span">
+<h2><span style="color:orange;"> 1. Datatypes and Operators </span><a class="headerlink" href="#span-style-color-orange-1-datatypes-and-operators-span" title="Permalink to this heading">#</a></h2>
+<p>Let’s initialize a variable in a cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can still access the variable in the next cell without having to redefine it.
+However, if you restart the kernel and only run the cell below, you will get an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Throughout this course we will use the following datatypes in Python.</p>
+<ul class="simple">
+<li><p>Boolean (<code class="docutils literal notranslate"><span class="pre">bool</span></code>): Boolean variables are either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> and are equivalent to <code class="docutils literal notranslate"><span class="pre">1</span></code> (true) or <code class="docutils literal notranslate"><span class="pre">0</span></code> (false).</p></li>
+<li><p>String (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Strings contain a sequence of characters.</p></li>
+<li><p>Numeric (<code class="docutils literal notranslate"><span class="pre">int</span></code>,<code class="docutils literal notranslate"><span class="pre">float</span></code>):</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">int</span></code> datatype holds signed integer values of arbitrary length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> variables hold floating point numbers. They are only accurate to 15-16 digits.</p></li>
+</ul>
+</li>
+</ul>
+<p>You can check the datatype of a variable in Python with the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if statements on both sides of the operator are true</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if at least one statement is true</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>Equality; gives <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>Tests if not equal</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;,&lt;=,&gt;,&gt;=</span></code></p></td>
+<td><p>Less than, less than or equal to, greater than, greater than or equal to</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
+<td><p>Used to compare types, NOT values</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td><p>Negation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p>Complement operator</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p>Addition</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Subtraction</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>Multiplication</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p>Division</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p>Exponentiation; <code class="docutils literal notranslate"><span class="pre">a**b</span></code> is <code class="docutils literal notranslate"><span class="pre">a</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td><p>Integer division; division without the remainder</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>Modulo operator; <code class="docutils literal notranslate"><span class="pre">a%b</span></code> returns <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">mod</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+=</span> <span class="pre">5</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a+5</span></code>; replace <code class="docutils literal notranslate"><span class="pre">+</span></code> with any other arithmetic operator (like <code class="docutils literal notranslate"><span class="pre">-,*,/,//,%</span></code>) for the same effect</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="span-style-color-orange-2-functions-and-loops-span">
+<h2><span style="color:orange;"> 2. Functions and Loops </span><a class="headerlink" href="#span-style-color-orange-2-functions-and-loops-span" title="Permalink to this heading">#</a></h2>
+<p>Defining your own functions will be a key skill in this course. Be sure to give your functions descriptive names. It helps you and others to read and interpret your code easily.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_message</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">separator</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">split_message</span><span class="p">(</span><span class="s2">&quot;happy birthday!&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">split_message</span><span class="p">(</span><span class="s2">&quot;bread, milk, eggs&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Loops allow us to move through a list a values.
+While loops continue executing the loop while a condition is true.
+For loops will iterate through a list.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">range(start,stop,step)</span></code> function returns a sequence of values starting at <code class="docutils literal notranslate"><span class="pre">start</span></code>, ending <em>before</em> <code class="docutils literal notranslate"><span class="pre">end</span></code> and incrementing by <code class="docutils literal notranslate"><span class="pre">step</span></code>. By default, <code class="docutils literal notranslate"><span class="pre">start</span></code> is 0 and <code class="docutils literal notranslate"><span class="pre">step</span></code> is 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span> <span class="c1"># start a 2, increment by 2 until 12 (13 not included)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">):</span> <span class="c1"># start at 20, decrease by 5 until 5 (0 not included)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">example_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python has a nice feature called comprehension that allows us to define lists in one line.
+It is best to use comprehension when the operation is clear.
+Don’t complicate code for the sake of brevity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>==1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">num</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">8</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">example_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-red-exercise-span">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#span-style-color-red-exercise-span" title="Permalink to this heading">#</a></h3>
+<p>When <span class="math notranslate nohighlight">\(n\)</span> is a natural number, the factorial of <span class="math notranslate nohighlight">\(n\)</span> is
+$<span class="math notranslate nohighlight">\( n! = n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1. \)</span><span class="math notranslate nohighlight">\(
+We define \)</span>0!=1$.</p>
+<p>Write a function returns <span class="math notranslate nohighlight">\(n!\)</span> if the input <span class="math notranslate nohighlight">\(n\)</span> is a natural number, otherwise it should print an error message.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
+<section id="id1">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Write a function with one parameter <span class="math notranslate nohighlight">\(n\)</span> that prints the first <span class="math notranslate nohighlight">\(n\)</span> rows of the pyramid</p>
+<pre>
+   1
+  2 2
+ 3 3 3
+4 4 4 4
+  ...
+</pre>
+<p>Call your function for <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(n=10\)</span>.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
+<section id="id2">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>A palindrome is a sequence that reads the same forward and backward. Write a function that checks if a given list or string is a palindrome. For example, if the input to your function is <code class="docutils literal notranslate"><span class="pre">&quot;level&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;[2,1,4,5,5,4,1,2]&quot;</span></code>, then the function should return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
+</section>
+<section id="span-style-color-orange-3-numpy-arrays-span">
+<h2><span style="color:orange;"> 3. NumPy Arrays </span><a class="headerlink" href="#span-style-color-orange-3-numpy-arrays-span" title="Permalink to this heading">#</a></h2>
+<p>So far, we have been using Python lists, but NumPy arrays are similar.
+Once we import the NumPy library, we can initalize an array like so -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">example_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">example_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">example_array</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The indexing of arrays is the same as list.
+Similar to the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function, we can make subarrays from splicing the original array as <code class="docutils literal notranslate"><span class="pre">example_array[start:stop:step]</span></code>. If not specified, the default start is at index 0 and the defualt end is the last index, and the default step size is 1. A negative index will start counting from the end of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>         <span class="c1"># first element is at index 0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>         <span class="c1"># last element </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>        <span class="c1"># also the last element</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>       <span class="c1"># subarray of elements at index 0,1,and 2 (3 not included)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>        <span class="c1"># same subarray as before, 0 is default start</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>     <span class="c1"># every other element of the subarray above</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>       <span class="c1"># subarray from second to last element to the end</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">])</span>      <span class="c1"># every third element starting with index 1 to the end of the array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same indexing applies for each index in a multi-dimensional array. The array defined below has 5 rows and 4 columns. At each row and column index, there is a length 3 array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>           <span class="c1"># the number of rows of A</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>          <span class="c1"># the shape of A</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>           <span class="c1"># length 3 array</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>         <span class="c1">#  the last element of length 3 array at [0.0]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s also easy to apply basic operations to an array without using loops. Be careful with operations on lists. For example, adding two lists <code class="docutils literal notranslate"><span class="pre">[1,2]+[3,4]</span></code> will return <code class="docutils literal notranslate"><span class="pre">[1,2,3,4]</span></code>. Adding two arrays though will output element-wise addition - <code class="docutils literal notranslate"><span class="pre">np.array([1,2])+np.array([3,4])</span></code> is <code class="docutils literal notranslate"><span class="pre">np.array([4,6])</span></code>.
+Always check that your outputs are what you expext.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creating a new list from example_list</span>
+<span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">example_list</span><span class="p">:</span>
+    <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+
+<span class="c1"># the same operation on an array</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_array</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Write a function with two parameters <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(m\)</span> that returns a 2-dimensional array with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns. Set the value in the i-th row and j-th column to be <span class="math notranslate nohighlight">\((i+j)\mod (\min(m,n))\)</span>.</p>
+<p>Create a new array from the output of your function with every odd indexed row multiplied by 3 and every even indexed column multiplied by 2.</p>
+<p>Print the results for <span class="math notranslate nohighlight">\(m=6\)</span> and <span class="math notranslate nohighlight">\(n=4\)</span>.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
+</section>
+<section id="span-style-color-orange-4-plotting-span">
+<h2><span style="color:orange;"> 4. Plotting </span><a class="headerlink" href="#span-style-color-orange-4-plotting-span" title="Permalink to this heading">#</a></h2>
+<p>We will primarily use the matplotlib.pyplot module for our data visualizations. There are many customizations you can make. To see more examples, glance through the <a class="reference external" href="https://matplotlib.org/stable/plot_types/index.html">documentation</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>       <span class="c1"># optional to specify figsize</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                           <span class="c1"># we could use np.linspace() to make our graph smoother</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;label 1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;r-o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;label 2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;example plot&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ff7f93ed186aa177a6a4da538f2072a6306fc2793ae2dd0b2fc8047582879421.png" src="../_images/ff7f93ed186aa177a6a4da538f2072a6306fc2793ae2dd0b2fc8047582879421.png" />
+</div>
+</div>
+<section id="id4">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>Write a function that plots
+$<span class="math notranslate nohighlight">\( f(x) = \begin{cases}
+    -\alpha x^2 - x,&amp; -10\leq x \leq 0 \\
+    \frac{\alpha}{3}x,&amp;  0 &lt; x \leq 1 \\
+    2\alpha - \frac{5\alpha}{3}x, &amp; 1 &lt; x \geq 10
+\end{cases}.\)</span><span class="math notranslate nohighlight">\(
+Plot your results for a few values of \)</span>\alpha &gt; 0$.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<section id="id5">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Plot a smooth graph of <span class="math notranslate nohighlight">\(y=\sin(x)+1\)</span> on the interval <span class="math notranslate nohighlight">\(0 \leq x \leq 4\)</span>. On the same graph, add a bar chart, representing the rectangles in a left Riemann sum on 12 subintervals.</p>
+<p><em>Hint: Here’s an example of a <a class="reference external" href="https://matplotlib.org/stable/plot_types/basic/bar.html#sphx-glr-plot-types-basic-bar-py">bar chart</a>.</em></p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+</section>
+<section id="span-style-color-green-reflection-span">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
+2. What are some things you learned today? <br>
+3. Are there any topics that could use more clarification? <br>
+4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./labs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab_00.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 1: Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab_02.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 3-4: Probability as a Frequency</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-datatypes-and-operators-span"><span style="color:orange;"> 1. Datatypes and Operators </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-functions-and-loops-span"><span style="color:orange;"> 2. Functions and Loops </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-numpy-arrays-span"><span style="color:orange;"> 3. NumPy Arrays </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-plotting-span"><span style="color:orange;"> 4. Plotting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
