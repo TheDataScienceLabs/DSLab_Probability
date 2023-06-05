@@ -386,9 +386,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">Binary Numbers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-needs-to-be-checked-span"><span style="color:red"> Exercise - NEEDS TO BE CHECKED </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-connecting-the-camera-span"><span style="color:orange;"> 3. Connecting the Camera </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-instructions">Wiring Instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-a-still-image">Capturing a still image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
@@ -411,14 +416,14 @@ document.write(`
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
 <ul class="simple">
-<li><p>sample spaces and events</p></li>
-<li><p>conditional probability</p></li>
-<li><p>binary numbers</p></li>
+<li><p>Sample spaces and events</p></li>
+<li><p>Conditional probability</p></li>
+<li><p>Binary numbers</p></li>
 </ul>
 <p><font size="5"> Programming Skills </font></p>
 <ul class="simple">
-<li><p>functions</p></li>
-<li><p>data visualization</p></li>
+<li><p>Functions</p></li>
+<li><p>Data visualization</p></li>
 </ul>
 <p><font size="5"> Embedded Systems </font></p>
 <ul class="simple">
@@ -438,8 +443,8 @@ document.write(`
 <p><strong>Email:</strong> me &#64;purdue.edu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                      
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>       
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -447,22 +452,26 @@ document.write(`
 </section>
 <section id="span-style-color-orange-probability-as-a-frequency-span">
 <h2><span style="color:orange;"> Probability as a Frequency </span><a class="headerlink" href="#span-style-color-orange-probability-as-a-frequency-span" title="Permalink to this heading">#</a></h2>
-<p>The <strong>sample space</strong> of an experiment is the set of all possible outcomes, and an <strong>event</strong> is any subset of the sample space. An event occurs if the outcome of an experiment is contained in the subset defining the event. When we view probability as a frequency, the probability of an event is the relative frequency that the event occurs over many repetitions of the experiment.</p>
-<p>The Raspberry Pi Pico has its own internal temperature sensor that returns an integer between 0 and 65535. In this example, our experiment is measuring the internal temperature of the Pico, and the sample space is the set <span class="math notranslate nohighlight">\(\{0,1,2,\dots, 65535\}\)</span>. We can easily compute the temperature in Celcius from the sensor reading <span class="math notranslate nohighlight">\(r\)</span> using the formula $<span class="math notranslate nohighlight">\( T_C =  27 - \frac{\frac{3.3r}{65535} - 0.706}{0.001721}.\)</span>$</p>
+<p>The <strong>sample space</strong> of an experiment is the set of all possible outcomes, and an <strong>event</strong> is any subset of the sample space. An event occurs if the outcome of an experiment is contained within the subset defining the event. When probability is viewed as a frequency, the probability of an event is the relative frequency at which the event occurs over many repetitions of the experiment.</p>
+<p>The Raspberry Pi Pico has its own internal temperature sensor that returns an integer between 0 and 65535. In this example, our experiment involves measuring the internal temperature of the Pico, and the sample space is represented by the set <span class="math notranslate nohighlight">\(\{0,1,2,\dots, 65535\}\)</span>. We can easily calculate the temperature in Celsius from the sensor reading <span class="math notranslate nohighlight">\(r\)</span> using the formula: $<span class="math notranslate nohighlight">\( T_C = 27 - \frac{\frac{3.3r}{65535} - 0.706}{0.001721}.\)</span>$</p>
 <section id="span-style-color-red-exercise-span">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#span-style-color-red-exercise-span" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(E\)</span> be the event that the Pico’s internal temperature is between 70-72 degrees Fahrenheit. What subset of outcomes from the sample space <span class="math notranslate nohighlight">\(\{0,1,2,\dots, 65535\}\)</span> define event <span class="math notranslate nohighlight">\(E\)</span>?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>The Raspberry Pi Pico also has 2MB onboard memory or flash storage, so we can save some small files of sensor data directly on the Pico. Download [pico_temperature.py]<strong>(add link)</strong> from GitHub. The purpose of the script is to take 12 temperature readings in total measuring once every <span class="math notranslate nohighlight">\(0.25\)</span> seconds and save them to a file called <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> on the Pico.</p>
-<p>You only need to place the Pico in the breadboard and connect it to your computer with the USB cable. Open Thonny, run <code class="docutils literal notranslate"><span class="pre">pico_temperature.py</span></code>. After the script is done running, move the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file that is stored on the Pico into the folder you are currently working in, and delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage. Modify <code class="docutils literal notranslate"><span class="pre">pico_temperature.py</span></code> as needed to take more measurements or change how often measurements are taken.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+<p>The Raspberry Pi Pico is equipped with 2MB of onboard memory or flash storage, enabling us to store small files of sensor data directly on the Pico. To begin, please download the [pico_temperature.py]<strong>(add link)</strong> script from GitHub (add link). The purpose of this script is to capture a total of 12 temperature readings, with measurements taken at intervals of 0.25 seconds, and save them to a file named <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> on the Pico.</p>
+<p>To perform the task, simply place the Pico on the breadboard and connect it to your computer using the USB cable. Open Thonny and execute the <code class="docutils literal notranslate"><span class="pre">pico_temperature.py</span></code> script. Once the script finishes running, transfer the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file stored on the Pico to the folder you are currently working in, and then delete <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> from the Pico’s storage. Feel free to modify the <code class="docutils literal notranslate"><span class="pre">pico_temperature.py</span></code> script as necessary to adjust the number of measurements or the measurement interval.</p>
 </section>
 <section id="id1">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p><strong>Part 1:</strong> Collect 1,000 temperature measurements from the Pico with at least 0.25 second between measurements. Display a bar plot of the values in <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code>. Include descriptive axis labels and a title.</p>
+<p><strong>Part 1:</strong> Collect 1,000 temperature measurements from the Pico, ensuring a minimum time interval of 0.25 seconds between each measurement. Display a bar plot to visualize the values stored in the <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code> file. Include clear and descriptive axis labels as well as an informative title.</p>
 <p><strong>Part 2:</strong> What value occurs the most frequently in <code class="docutils literal notranslate"><span class="pre">temp.txt</span></code>? What is the relative frequency of that value?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;temp.txt&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>    <span class="c1"># make sure temp.txt is in the same directory as this notebook file</span>
-                                            <span class="c1"># dtype stands for data type, every line in the txt file will be read as an integer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span>
+    <span class="s2">&quot;temp.txt&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span>
+<span class="p">)</span>  <span class="c1"># make sure temp.txt is in the same directory as this notebook file</span>
+<span class="c1"># dtype stands for data type, every line in the txt file will be read as an integer</span>
 </pre></div>
 </div>
 </div>
@@ -471,40 +480,42 @@ document.write(`
 <section id="id2">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Find the mode <span class="math notranslate nohighlight">\(m\)</span> (i.e., the value that occurs the most) of the first 11 temperature measurements.
-Define <span class="math notranslate nohighlight">\(E\)</span> as the event that the temperature measurement is equal to <span class="math notranslate nohighlight">\(m\)</span>. The complement of event <span class="math notranslate nohighlight">\(E\)</span> is <span class="math notranslate nohighlight">\(E'\)</span>, i.e., when the measurement is different than <span class="math notranslate nohighlight">\(m\)</span>.</p>
-<p>After the first 11 readings, how frequently does the event <span class="math notranslate nohighlight">\(E\)</span> occur? How frequently does the event <span class="math notranslate nohighlight">\(E'\)</span> occur?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+Define event <span class="math notranslate nohighlight">\(E\)</span> as the occurrence of a temperature measurement that is equal to <span class="math notranslate nohighlight">\(m\)</span>. The complement of event <span class="math notranslate nohighlight">\(E\)</span> is denoted as <span class="math notranslate nohighlight">\(E'\)</span>, representing the cases where the measurement differs from <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p>After obtaining the first 11 readings, calculate the frequently at which event <span class="math notranslate nohighlight">\(E\)</span> occurs. Similarly, determine the frequency of event <span class="math notranslate nohighlight">\(E'\)</span> in the given set of measurements.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
 <section id="id3">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
-<p>Let’s only consider the first digit of the temperature measurement. Plot a bar graph of the frequency that each digit 0-9 appears.</p>
+<p>Let’s focus solely on the first digit of each temperature measurement. Plot a bar graph that displays the frequency at which each digit from 0 to 9 appears.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 </section>
 <section id="id4">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
-<p>Repeat the previous exercise but with the second digit instead of the first, and again with the third digit, fouth digit, and fifth digit. You will have 4 bar charts.</p>
-<p>Which digit place has the most variability in your set of measurements?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<p>Repeat the previous exercise, but this time, consider the second digit instead of the first. Additionally, repeat the exercise separately for the third, fourth, and fifth digits. This means you will create a total of four bar charts, each showing the frequency of digits 0 to 9 in their respective digit places.</p>
+<p>Which digit place exhibits the highest variability in your set of measurements?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
 </section>
 <section id="span-style-color-orange-conditional-probability-span">
 <h2><span style="color:orange;"> Conditional Probability </span><a class="headerlink" href="#span-style-color-orange-conditional-probability-span" title="Permalink to this heading">#</a></h2>
-<p>For two events <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span>, the probability of event <span class="math notranslate nohighlight">\(E\)</span> occuring given that event <span class="math notranslate nohighlight">\(F\)</span> has occured is a <strong>conditional probability</strong>. With our view of probability as a frequency, this means that the probability of <span class="math notranslate nohighlight">\(E\)</span> given <span class="math notranslate nohighlight">\(F\)</span> is the relative frequency of <span class="math notranslate nohighlight">\(E\)</span> occuring in the sample space defined by <span class="math notranslate nohighlight">\(F\)</span>, i.e., $<span class="math notranslate nohighlight">\( P(E\mid F) = \frac{P(E \cap F)}{P(F)}. \)</span>$</p>
+<p>In the context of two events, denoted as <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span>, the probability of event <span class="math notranslate nohighlight">\(E\)</span> occurring given that event <span class="math notranslate nohighlight">\(F\)</span> has occurred is referred to as a  <strong>conditional probability</strong>. When we view probability as a frequency, this implies that the probability of event <span class="math notranslate nohighlight">\(E\)</span> given event <span class="math notranslate nohighlight">\(F\)</span> is calculated as the relative frequency of event <span class="math notranslate nohighlight">\(E\)</span> occurring within the sample space defined by event <span class="math notranslate nohighlight">\(F\)</span>. Mathematically, this can be expressed as: $<span class="math notranslate nohighlight">\( P(E\mid F) = \frac{P(E \cap F)}{P(F)}. \)</span>$</p>
 <section id="binary-numbers">
 <h3>Binary Numbers<a class="headerlink" href="#binary-numbers" title="Permalink to this heading">#</a></h3>
 <p>For reasons that will be clear in the next section, let’s take a detour into binary numbers.</p>
-<p>We are accustomed to the base-10 number system. We can break down numbers like <span class="math notranslate nohighlight">\(9234\)</span> as</p>
+<p>We are accustomed to the base-10 number system, where numbers such as <span class="math notranslate nohighlight">\(9234\)</span> can be broken down as follows:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 9234 &amp;= (9\times 1000) +( 2\times 100) + (3\times 10) + (4\times 1) \\
-    &amp;= (9\times 10^3) + (2\times 10^2) + (3\times 10^1) + (4\times 10^0)
+&amp;= (9\times 10^3) + (2\times 10^2) + (3\times 10^1) + (4\times 10^0)
 \end{align*}\]</div>
-<p>Similarly, in base-2 (or binary). The binary number 1101 in base-10 is</p>
+<p>Similarly, in the base-2 system (or binary), the binary number 1101 in base-10 is represented as:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 1101 &amp;= (1\times 2^3) + (1\times 2^2) + (0\times 2^1) + (1\times 2^0) \\
-    &amp;= (1\times 8) + (1\times 4) + (0\times 2) + (1\times 1) \\
-    &amp;= 13
+&amp;= (1\times 8) + (1\times 4) + (0\times 2) + (1\times 1) \\
+&amp;= 13
 \end{align*}\]</div>
-<p>In python, the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code> tells the computer to interpret the sequence as base-2. To do the reverse, call the <code class="docutils literal notranslate"><span class="pre">bin</span></code> function as demonstrated below.</p>
+<p>In python, the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code> indicates to the computer that the sequence should be interpreted as a base-2 number. To perform the reverse conversion, you can use the <code class="docutils literal notranslate"><span class="pre">bin</span></code> function, as demonstrated below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b1101</span>
@@ -531,28 +542,34 @@ Define <span class="math notranslate nohighlight">\(E\)</span> as the event that
 <li><p>101011</p></li>
 <li><p>110000</p></li>
 </ul>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
 <section id="id6">
 <h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
-<p><strong>Part 1:</strong> What range of integers can we represent using 16 bits?</p>
-<p><strong>Part 2:</strong> What is the minimum length of a random binary sequence needed to get a random number between 0 and 100?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><hr class="docutils" />
+<p><strong>Part 1:</strong> What range of integers can be represented using 16 bits?</p>
+<p><strong>Part 2:</strong> What is the minimum length of a random binary sequence required to obtain a random number between 0 and 100?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+<hr class="docutils" />
 <p><strong>NOTE</strong></p>
 <p>This is a 2-week lab. Turn in the exercises above. Pick up from here during the next lab session.</p>
 <hr class="docutils" />
-<p>Identifying textures in images is an important task in many fields like medical imaging, remote sensing, and facial detection.
-There is a simple but powerful method called local binary patterns (LBP) that is commonly used to classify textures when used together with some machine learning algorithms.</p>
-<p>We are going to work with the grayscale images in this [folder](<strong>add link</strong>). Download the folder of images from GitHub.</p>
-<p>For an  <span class="math notranslate nohighlight">\(m \times n\)</span> grayscale image, there are <span class="math notranslate nohighlight">\(m\)</span> rows of pixels and <span class="math notranslate nohighlight">\(n\)</span> columns of pixels. Each pixel describes the intensity of the image with an integer between 0 and 255 (0 for black and 255 for white).</p>
-<p>See the cell below on how to read in and display grayscale images in Python.</p>
+<p>Identifying textures in images is an important task in many fields, such as medical imaging, remote sensing, and facial detection.
+A simple yet powerful method called local binary patterns (LBP) is commonly used to classify textures when employed in conjunction with certain machine learning algorithms.</p>
+<p>We will be working with the grayscale images in this [folder](<strong>add link</strong>). Please download the folder of images from GitHub.</p>
+<p>For an <span class="math notranslate nohighlight">\(m \times n\)</span> grayscale image, there are <span class="math notranslate nohighlight">\(m\)</span> rows of pixels and <span class="math notranslate nohighlight">\(n\)</span> columns of pixels. Each pixel describes the intensity of the image with an integer ranging from 0 and 255 (0 representing black and 255 representing white).</p>
+<p>Please refer to the cell below for instructions on how to read and display grayscale images in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>                                   <span class="c1"># needed for reading images</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>  <span class="c1"># needed for reading images</span>
 
-<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;textures/texture_1.jpg&#39;</span><span class="p">))</span>    <span class="c1"># read in the image and store it as a numpy array</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;image size is </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>                  <span class="c1"># create figure and set figure size</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>            <span class="c1"># display the image in grayscale between 0 and 255</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;textures/texture_1.jpg&quot;</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># read in the image and store it as a numpy array</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;image size is </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># create figure and set figure size</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span>
+<span class="p">)</span>  <span class="c1"># display the image in grayscale between 0 and 255</span>
 <span class="c1"># ax.axis(&#39;off&#39;)                                        # uncomment this line to hide the axes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -560,10 +577,10 @@ There is a simple but powerful method called local binary patterns (LBP) that is
 </div>
 </div>
 </section>
-<section id="id7">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
-<p>Complete the following steps of LBP for each image in the textures folder.</p>
-<p><strong>1.</strong> For each pixel, look at the values of its 8 neighboring pixels.</p>
+<section id="span-style-color-red-exercise-needs-to-be-checked-span">
+<h3><span style="color:red"> Exercise - NEEDS TO BE CHECKED </span><a class="headerlink" href="#span-style-color-red-exercise-needs-to-be-checked-span" title="Permalink to this heading">#</a></h3>
+<p>Complete the following steps of LBP for each image in the textures folder:</p>
+<p><strong>1.</strong> For each pixel, examine the values of its 8 neighboring pixels.</p>
 <blockquote>
 <div><p>Ex:</p>
 <table class="table">
@@ -589,7 +606,7 @@ There is a simple but powerful method called local binary patterns (LBP) that is
 </tbody>
 </table>
 </div></blockquote>
-<p><strong>2.</strong> Starting at the pixel directly above the center pixel, move clockwise around the center to create a binary sequence of length 8. Assign ‘0’ if the neighbor’s value is greater than the center and ‘1’ otherwise.</p>
+<p><strong>2.</strong> Starting at the pixel directly above the center pixel, move clockwise around the center to create a binary sequence of length 8. Assign ‘0’ if the neighbor’s value is greater than the center pixel’s value, and ‘1’ otherwise.</p>
 <blockquote>
 <div><p>Using the example above, we start at the center value of 12 and then start above at the 15 so the binary sequence is <code class="docutils literal notranslate"><span class="pre">'0'</span></code> so far.
 Then we move to the top right at 12. Now the binary sequence is <code class="docutils literal notranslate"><span class="pre">'01'</span></code>. If we keep going, the final binary number is <code class="docutils literal notranslate"><span class="pre">'01110001'</span></code>.</p>
@@ -599,7 +616,8 @@ Then we move to the top right at 12. Now the binary sequence is <code class="doc
 <div><p>For our example, we get an LBP value of 113.</p>
 </div></blockquote>
 <p><strong>4.</strong> Plot the frequency that each LBP value 0-255 appears.</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove solution</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">feature</span>
@@ -614,19 +632,20 @@ Then we move to the top right at 12. Now the binary sequence is <code class="doc
 </div>
 </div>
 </section>
-<section id="id8">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
-<p>The maximum possible LBP value is 255 and it seems to come up a lot.
-If we only consider pixels that result in an LBP value of 255, what grayscales values (i.e., the value of the center pixel) are the most common?</p>
-<p>Use a bar plot to summarize your answer. Remember to label the axes and title the plot.</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
+<section id="id7">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>The maximum possible LBP value is 255, and it appears frequently.
+If we only consider pixels that result in an LBP value of 255, which grayscales values (i.e., the value of the center pixel) are the most common?</p>
+<p>Please use a bar plot to summarize your answer. Remember to label the axes and title the plot.</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove solution</span>
-<span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)}</span>
+<span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)}</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="k">if</span> <span class="n">lbp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">255</span><span class="p">:</span>
-            <span class="nb">dict</span><span class="p">[</span><span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">lbp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">255</span><span class="p">:</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="nb">dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -634,22 +653,119 @@ If we only consider pixels that result in an LBP value of 255, what grayscales v
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="span-style-color-orange-3-connecting-the-camera-span">
+<h2><span style="color:orange;"> 3. Connecting the Camera </span><a class="headerlink" href="#span-style-color-orange-3-connecting-the-camera-span" title="Permalink to this heading">#</a></h2>
+<p>This time, we will be recording our own videos using the Arducam HM01B0, which is a small camera that can be hooked up to the Pico.</p>
+<section id="wiring-instructions">
+<h3>Wiring Instructions<a class="headerlink" href="#wiring-instructions" title="Permalink to this heading">#</a></h3>
+<p>Please ensure that your microcontroller is not connected to the computer while you are wiring components together. If you are unsure about your wiring, please consult the instructor. Utilize your jumper wires to establish the following connections.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>HM01B0</p></th>
+<th class="head"><p>Pico</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VCC</p></td>
+<td><p>3V3</p></td>
+</tr>
+<tr class="row-odd"><td><p>SCL</p></td>
+<td><p>GP5</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA</p></td>
+<td><p>GP4</p></td>
+</tr>
+<tr class="row-odd"><td><p>VSYNC</p></td>
+<td><p>GP16</p></td>
+</tr>
+<tr class="row-even"><td><p>HREF</p></td>
+<td><p>GP15</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCLK</p></td>
+<td><p>GP14</p></td>
+</tr>
+<tr class="row-even"><td><p>DO</p></td>
+<td><p>GP6</p></td>
+</tr>
+<tr class="row-odd"><td><p>GND</p></td>
+<td><p>GND</p></td>
+</tr>
+</tbody>
+</table>
+<!-- ![img](camera.jpg)
+
+*Wiring the Arducam HM01B0 camera* 
+
+![img](camerawiring.jpg)
+
+*Connections to the PICO on breadboard* -->
+<p>After confirming that the wiring is correct, press and hold the BOOTSEL button on the Pico while plugging it in. Download the <a class="reference external" href="https://github.com/TheDataScienceLabs/DataLab_Multivariate_Calculus/blob/main/book/labs/2_Video_Labs/arducam.uf2">arducam.uf2</a> file and copy it onto the Pico’s drive, which should have popped up in your folders as an option. Once the file transfer is complete, the Pico will automatically disconnect, and its LED will start blinking rapidly.</p>
+<p>Once the Pico has been successfully connected, please execute the following cell to ensure that we have successfully detected the Pico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+<span class="kn">from</span> <span class="nn">serial.tools</span> <span class="kn">import</span> <span class="n">list_ports</span>
+
+<span class="n">PICO_HWID</span> <span class="o">=</span> <span class="s2">&quot;2E8A&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">get_pico_port</span><span class="p">():</span>
+    <span class="n">pico_ports</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">list_ports</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="n">PICO_HWID</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pico_ports</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="s2">&quot;No Raspberry Pi Pico was detected. Check to make sure it is plugged in, and that no other programs are accessing it&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pico_ports</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here are all the serial devices detected:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">list_ports</span><span class="o">.</span><span class="n">comports</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">hwid</span><span class="p">)</span>
+
+<span class="n">port</span> <span class="o">=</span> <span class="n">get_pico_port</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">selected port </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2"> as most likely to have a raspberry pi pico&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="capturing-a-still-image">
+<h3>Capturing a still image<a class="headerlink" href="#capturing-a-still-image" title="Permalink to this heading">#</a></h3>
+<p>Now that the Pico and camera have been connected, please the following cell to capture a still image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">96</span> <span class="o">*</span> <span class="mi">96</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x55\xAA</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">flat</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>add instructions for wiring the camera and add code from calc 3 labs on capturing a still image</strong></p>
 </section>
-<section id="id9">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
-<p>Connect the camera to the Pico and take at least 3 images of different surfaces (e.g., the desk, floor, your phone case, your hand, etc.)</p>
-<p>Perform LBP on your images. Do you think that the frequency of LBP values that appear are very different from image to image?</p>
-<p>Can you think of a (mathematical) rule to distinguish between two different textures based on LBP?</p>
-<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
+<section id="id8">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>Connect the camera to the Pico and capture at least 3 images of different surfaces, such as the desk, floor, your phone case, your hand, etc.</p>
+<p>Apply LBP to the captured images. Do you observe significant variations in the frequency of LBP values across different images?</p>
+<p>Can you propose a mathematical rule to differentiate between two distinct textures based on LBP?</p>
+<h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
+</section>
 </section>
 <section id="span-style-color-green-reflection-span">
 <h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
-<p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
-2. What are some things you learned today? <br>
-3. Are there any topics that could use more clarification? <br>
-4. Do you have any suggestions on parts of the lab to improve?</strong></p>
-<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
+<p><strong>1. What parts of the lab, if any, do you feel you did well? <br> 2. What are some things you learned today? <br> 3. Are there any topics that could use more clarification? <br> 4. Do you have any suggestions on parts of the lab to improve?</strong></p>
+<h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -733,9 +849,14 @@ If we only consider pixels that result in an LBP value of 255, what grayscales v
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">Binary Numbers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-needs-to-be-checked-span"><span style="color:red"> Exercise - NEEDS TO BE CHECKED </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><span style="color:red"> Exercise </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-connecting-the-camera-span"><span style="color:orange;"> 3. Connecting the Camera </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-instructions">Wiring Instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-a-still-image">Capturing a still image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8"><span style="color:red"> Exercise </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
