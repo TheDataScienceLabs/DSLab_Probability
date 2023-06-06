@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Breadboards &#8212; The Data Science Labs on Probability</title>
+    <title>Raspberry Pi Pico Pinout &#8212; The Data Science Labs on Probability</title>
   
   
   
@@ -61,11 +61,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'extra_materials/intro_to_breadboards/intro_to_breadboards';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'extra_materials/pico_datasheet/pico_datasheet';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Raspberry Pi Pico Pinout" href="../pico_datasheet/pico_datasheet.html" />
-    <link rel="prev" title="Introduction to \(\LaTeX\)" href="../intro_to_latex/intro_to_latex.html" />
+    <link rel="prev" title="Introduction to Breadboards" href="../intro_to_breadboards/intro_to_breadboards.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,8 +175,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../intro_to_latex/intro_to_latex.html">Introduction to <span class="math notranslate nohighlight">\(\LaTeX\)</span></a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Breadboards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pico_datasheet/pico_datasheet.html">Raspberry Pi Pico Pinout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Raspberry Pi Pico Pinout</a></li>
 </ul>
 
     </div>
@@ -249,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability/issues/new?title=Issue%20on%20page%20%2Fextra_materials/intro_to_breadboards/intro_to_breadboards.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability/issues/new?title=Issue%20on%20page%20%2Fextra_materials/pico_datasheet/pico_datasheet.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/extra_materials/intro_to_breadboards/intro_to_breadboards.ipynb" target="_blank"
+      <li><a href="../../_sources/extra_materials/pico_datasheet/pico_datasheet.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -361,7 +360,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Breadboards</h1>
+    <h1>Raspberry Pi Pico Pinout</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -371,19 +370,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-span"><span style="color:orange;"> 1. Breadboard Connections </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-notes">Some Important Notes:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard"><span style="color:red"> Exercise 1: </span> Wiring an LED on a breadboard</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-submitting-this-exercise-span"><span style="color:orange;"> 2. Submitting this Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-the-pinout-diagram-span"><span style="color:orange;"> 1. The Pinout Diagram </span></a></li>
 </ul>
             </nav>
         </div>
@@ -395,75 +384,35 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-breadboards">
-<h1>Introduction to Breadboards<a class="headerlink" href="#introduction-to-breadboards" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="raspberry-pi-pico-pinout">
+<h1>Raspberry Pi Pico Pinout<a class="headerlink" href="#raspberry-pi-pico-pinout" title="Permalink to this heading">#</a></h1>
 <p><font size="6"> Extra material </font> <br>
-<font size="3"> Last updated January 9, 2023 </font></p>
+<font size="3"> Last updated July 26, 2022 </font></p>
 <section id="span-style-color-orange-00-content-span">
 <h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
-<section id="mathematics">
-<h3>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading">#</a></h3>
+<p><font size="5"> Mathematics </font></p>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
-</section>
-<section id="programming-skills">
-<h3>Programming Skills<a class="headerlink" href="#programming-skills" title="Permalink to this heading">#</a></h3>
+<p><font size="5"> Programming Skills </font></p>
+<ul class="simple">
+<li><p>Latex</p></li>
+</ul>
+<p><font size="5"> Embedded Systems </font></p>
 <ul class="simple">
 <li><p>N/A</p></li>
 </ul>
-</section>
-<section id="embedded-systems">
-<h3>Embedded Systems<a class="headerlink" href="#embedded-systems" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>N/A</p></li>
-</ul>
-</section>
 </section>
 <section id="span-style-color-orange-0-required-hardware-span">
 <h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Breadboard</p></li>
-<li><p>Wires</p></li>
-<li><p>LED</p></li>
-<li><p>9V battery</p></li>
-<li><p>Voltage Regulator IC (LM 7805)</p></li>
-<li><p>220 ohm resistor</p></li>
+<li><p>N/A</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-1-breadboard-connections-span">
-<h2><span style="color:orange;"> 1. Breadboard Connections </span><a class="headerlink" href="#span-style-color-orange-1-breadboard-connections-span" title="Permalink to this heading">#</a></h2>
-<p>We will be using a breadboard throughout the labs to temporarily prototype all the experiments as it is easy to use without any soldering.</p>
-<p>A typical breadboard looks like this:</p>
-<p><img alt="breadboard" src="../../_images/breadboard.jpg" /></p>
-<p>The outer two rows on top and bottom of the board are shorted horizontally (any two points on the same row will have the same potential).
-The remaining areas are shorted column wise till the ridge at the middle. We can understand this clearly by seeing the internals of the breadboard.</p>
-<p><img alt="breadboard_internal" src="../../_images/breadboard_internal.jpg" /></p>
-<section id="some-important-notes">
-<h3>Some Important Notes:<a class="headerlink" href="#some-important-notes" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Most of the electronic components that we use in the lab will run only on either 3.3V or 5V DC.</p></li>
-<li><p>If you are not sure about the safe operation of a component or any equipment in the lab. Please contact a TA.</p></li>
-<li><p>The longest leg of an LED is the anode which should be connected to the positive.</p></li>
-<li><p>Verify with any of the teaching staff before powering the circuit.</p></li>
-</ol>
-</section>
-<section id="span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard">
-<h3><span style="color:red"> Exercise 1: </span> Wiring an LED on a breadboard<a class="headerlink" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard" title="Permalink to this heading">#</a></h3>
-<p>The picture below shows a voltage regulator IC which we will use to regulate the voltage to protect our circuit.
-We need this regulator as the battery we are using to power the circuit is 9 volts and we will be using this IC to drop the voltage to 5V.</p>
-<p><img alt="voltage_regulator_ic" src="../../_images/voltage_regulator_ic.jpg" /></p>
-<p>When the IC is facing you as shown in the figure the left pin will be the input, the middle pin will be the common ground and the right pin will be the output voltage (5V with respect to ground).</p>
-<p>Now you can start wiring the circuit on the breadboard using this circuit diagram</p>
-<p>The circuit will look something like this.</p>
-<p>The output of the Voltage regulator will be 5V but our LED is rated for 2.5 - 3V, so we will be using a 220 ohm resistor in series with the LED so that it will not be damaged.</p>
-<p><img alt="circuit_diagram" src="../../_images/circuit_diagram.png" /></p>
-<p>If your circuit connections are correct, the LED should light up.</p>
-</section>
-</section>
-<section id="span-style-color-orange-2-submitting-this-exercise-span">
-<h2><span style="color:orange;"> 2. Submitting this Exercise </span><a class="headerlink" href="#span-style-color-orange-2-submitting-this-exercise-span" title="Permalink to this heading">#</a></h2>
-<p>This exercise does not need to be submitted virtually. Upon completion, raise your hand for your instructor to come and check your breadboard over.</p>
+<section id="span-style-color-orange-1-the-pinout-diagram-span">
+<h2><span style="color:orange;"> 1. The Pinout Diagram </span><a class="headerlink" href="#span-style-color-orange-1-the-pinout-diagram-span" title="Permalink to this heading">#</a></h2>
+<p>To obtain the names of the pins on the Raspberry Pi Pico, you can refer to the diagram provided below.</p>
+<p><img alt="pico_datasheet" src="../../_images/pico_pinout.png" /></p>
 </section>
 </section>
 
@@ -480,7 +429,7 @@ We need this regulator as the battery we are using to power the circuit is 9 vol
         },
         kernelOptions: {
             name: "python3",
-            path: "./extra_materials/intro_to_breadboards"
+            path: "./extra_materials/pico_datasheet"
         },
         predefinedOutput: true
     }
@@ -499,22 +448,13 @@ We need this regulator as the battery we are using to power the circuit is 9 vol
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro_to_latex/intro_to_latex.html"
+       href="../intro_to_breadboards/intro_to_breadboards.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction to <span class="math notranslate nohighlight">\(\LaTeX\)</span></p>
+        <p class="prev-next-title">Introduction to Breadboards</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../pico_datasheet/pico_datasheet.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Raspberry Pi Pico Pinout</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -534,19 +474,9 @@ We need this regulator as the battery we are using to power the circuit is 9 vol
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematics">Mathematics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-skills">Programming Skills</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-systems">Embedded Systems</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-breadboard-connections-span"><span style="color:orange;"> 1. Breadboard Connections </span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-notes">Some Important Notes:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span-wiring-an-led-on-a-breadboard"><span style="color:red"> Exercise 1: </span> Wiring an LED on a breadboard</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-submitting-this-exercise-span"><span style="color:orange;"> 2. Submitting this Exercise </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-the-pinout-diagram-span"><span style="color:orange;"> 1. The Pinout Diagram </span></a></li>
 </ul>
   </nav></div>
 
