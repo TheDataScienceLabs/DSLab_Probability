@@ -16,7 +16,7 @@ If you'd like to develop and/or build the The Data Science Labs on Probability b
 4. Run `jupyter-book clean book` to remove any existing builds
 5. Run `jupyter-book build book`
 
-A fully-rendered HTML version of the book will be built in `DSLab_Probability/_build/html/`.
+A fully-rendered HTML version of the book will be built in `DSLab_Probability/book/_build/html/`.
 
 ### Hosting the book
 
