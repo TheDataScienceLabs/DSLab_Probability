@@ -2,7 +2,7 @@
 
 A set of labs suitable for students enrolled in their second calculus class.
 
-See the web version here: [https://thedatasciencelabs.github.io/DSLab_Calculus](https://thedatasciencelabs.github.io/DSLab_Calculus)
+See the web version here: [https://github.com/TheDataScienceLabs/DSLab_Probability](https://thedatasciencelabs.github.io/DSLab_Probability)
 
 ## Usage
 
@@ -16,7 +16,7 @@ If you'd like to develop and/or build the The Data Science Labs on Probability b
 4. Run `jupyter-book clean book` to remove any existing builds
 5. Run `jupyter-book build book`
 
-A fully-rendered HTML version of the book will be built in `DSLab_Calculus/_build/html/`.
+A fully-rendered HTML version of the book will be built in `DSLab_Probability/_build/html/`.
 
 ### Hosting the book
 
@@ -26,16 +26,8 @@ For GitHub and GitLab deployment specifically, the [cookiecutter-jupyter-book](h
 
 ## Contributors
 
-We welcome and recognize all contributions. You can see a list of current contributors in the [contributors tab](https://github.com/AldenMB/ds_labs_calculus/graphs/contributors).
+We welcome and recognize all contributions. You can see a list of current contributors in the [contributors tab](https://github.com/TheDataScienceLabs/DSLab_Probability/graphs/contributors).
 
 ## Credits
 
 This project is created using the excellent open source [Jupyter Book project](https://jupyterbook.org/) and the [executablebooks/cookiecutter-jupyter-book template](https://github.com/executablebooks/cookiecutter-jupyter-book).
-
-# DSLab_Probability
-
-The Data Science Labs on Probability
-
-## >>> Project under construction! <<<
-
-The `max30102 module` is taken from the repository https://github.com/n-elia/MAX30102-MicroPython-driver.git and and the `main.py` file is based on code from the same repository.
