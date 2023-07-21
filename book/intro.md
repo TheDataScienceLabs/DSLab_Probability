@@ -4,7 +4,7 @@
 
 **|| By Alden Bradford and Mireille Boutin with Kindyl King and Naazneen Rana ||**
 
-Welcome to || MA16290 ||, The Data Science Labs on Probability! This is a one-credit course to accompany ECE302 or any other course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
+Welcome to The Data Science Labs on Probability! This is a one-credit course to accompany ECE302 or any other course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
 
 This course requires no work outside of the lab. It has no homework, quizzes, tests, or exams. All work is performed during the 150 minutes spent in the lab each week. Our friendly undergraduate instructors will assist you and answer all your questions during lab time.
 
