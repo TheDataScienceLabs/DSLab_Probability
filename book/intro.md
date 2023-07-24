@@ -23,17 +23,15 @@ Contact Professor Boutin at mboutin@purdue.edu if you have any more questions re
 
 ## How to Get Started
 
-You are reading an interactive Notebook written in the Jupyter language. Jupyter allows a collection of files to be neatly compiled into a single web page, such as the one you're looking at. It also allows you to write and compile Python code.
+You are currently reading an interactive Notebook written in the Jupyter language. Jupyter allows you to neatly compile a collection of files into a single web page, like the one you are viewing now. It also enables you to write and execute Python code. This Notebook has been created using JupyterLab, which you will use to interact with and edit the labs.
 
-The application used to make these Notebooks is JupyterLab, which you'll be using to interact with and edit the labs.
+To get started with this course, click the next arrow at the bottom right of this page to move to the first lab, Lab 0. In Lab 0, you will learn how to interact with the Notebook, including running code, editing cells, and utilizing other useful features available in Jupyter. During the lab, you will be asked to complete some exercises. You should provide your answers directly in the Notebook by editing the lab file.
 
-To get started with this course, click the next arrow at the bottom left of this page to get to the first lab. This lab will explain how to interact with the Notebook, including running code, editing cells, and other useful features that can be used in Jupyter. Throughout the lab, you will be asked to perform some exercises. You will write your answers directly in the Notebook. In other words, you will need to edit the lab file. We recommend downloading the file and opening it in JupyterLab to edit the lab.
+We recommend downloading the lab file by clicking the download icon in the top right of the screen and saving the `.ipynb` version of Lab 0. After downloading, open the JupyterLab application. This will bring you to a screen with files and a Table of Contents on the left side, and the screen on the right side. If it's not already open, click on the folder icon in the top left corner to open the files directory. Navigate to the _"Downloads"_ folder, and double-click on the `lab_0.ipynb` file. This will open Lab 0 in JupyterLab, where you can follow the directions in the lab to begin.
 
-To begin editing this lab, click the download icon in the top right of the screen and download the _.ipynb_ version of Lab 0. After this, open the JupyterLab application. This will bring you to a screen with files and a Table of Contents on the left side and a screen on the right side. If not already open, open the files directory by clicking on the folder icon in the top left corner. Open the "_Downloads_" file, double-click `lab_0.ipynb`, and follow the directions in this lab to begin.
+When it's time to submit the labs on Gradescope, you must provide the file as a PDF. Further instructions on how to do this will be provided in Lab 0.
 
-To turn in the labs on Brightspace, you must export the file as a PDF. To do this, navigate to "_File_", "_Save and Export Notebook as_", and then click on "_PDF_". This will be further explained in Laboratory 0.
-
-Please ask the instructor for assistance if you have any questions or are experiencing difficulties during these labs.
+If you have any questions or encounter difficulties during the labs, don't hesitate to ask the instructor for assistance.
 
 ## Acknowledgements
 
