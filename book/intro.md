@@ -2,15 +2,15 @@
 
 ## The Data Science Labs on Probability
 
-**|| By Alden Bradford and Mireille Boutin with Kindyl King and Naazneen Rana ||**
+**By Kindyl King, Mireille Boutin, and Christopher Janjigian with our names**
 
-Welcome to The Data Science Labs on Probability! This is a one-credit course to accompany ECE302 or any other course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
+Welcome to The Data Science Labs on Probability! This is a one-credit course to accompany ECE302, MA416, STAT416, or any other introductory course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
 
 This course requires no work outside of the lab. It has no homework, quizzes, tests, or exams. All work is performed during the 150 minutes spent in the lab each week. Our friendly undergraduate instructors will assist you and answer all your questions during lab time.
 
-Prior experience with at least one DS Lab or Python is a prerequisite for taking this course. Additionally, ECE302 or MA416 is a co-requisite for this course.
+Prior experience with at least one DS Lab or Python is a prerequisite for taking this course. Additionally, ECE302, MA416, STAT416, or any other introductory course on probability, is a co-requisite for this course.
 
-Purdue Students: You can earn Honors credit for || || by taking this lab. See the syllabus for details.
+Purdue Students: You can earn Honors credit for ECE302, MA416, or STAT416 by taking this lab. See the syllabus for details.
 <br>
 
 ## More Information and Contact
@@ -35,6 +35,4 @@ If you have any questions or encounter difficulties during the labs, don't hesit
 
 ## Acknowledgements
 
-||
-The development of this course was supported by Purdue's College of Engineering and Purdue's Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Eric Nauman, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support. Thank you to Julia Long for helping with the proofreading and formatting.
-||
+The development of this course was supported by the Purdue's Elmore Family School of Electrical and Computer Engineering and Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support.
