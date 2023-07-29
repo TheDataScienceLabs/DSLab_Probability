@@ -1,28 +1,8 @@
 # The Data Science Labs on Probability
 
-A set of labs suitable for students enrolled in their second calculus class.
+Welcome! This is a one-credit course designed to accompany ECE302, MA416, STAT416, or any other introductory course on probability. Throughout this course, you will explore applications of probability to problems in data science. Additionally, you will gain practical experience in programming with Python and learn how to use Arduino sensors and microprocessors.
 
-See the web version here: [https://github.com/TheDataScienceLabs/DSLab_Probability](https://thedatasciencelabs.github.io/DSLab_Probability)
-
-## Usage
-
-### Building the book
-
-If you'd like to develop and/or build the The Data Science Labs on Probability book, you should:
-
-1. Clone this repository
-2. Run `pip install -r requirements.txt` (it is recommended you do this within a virtual environment)
-3. (Optional) Edit the books source files located in the `DSLab_Probability/` directory
-4. Run `jupyter-book clean book` to remove any existing builds
-5. Run `jupyter-book build book`
-
-A fully-rendered HTML version of the book will be built in `DSLab_Probability/book/_build/html/`.
-
-### Hosting the book
-
-Please see the [Jupyter Book documentation](https://jupyterbook.org/publish/web.html) to discover options for deploying a book online using services such as GitHub, GitLab, or Netlify.
-
-For GitHub and GitLab deployment specifically, the [cookiecutter-jupyter-book](https://github.com/executablebooks/cookiecutter-jupyter-book) includes templates for, and information about, optional continuous integration (CI) workflow files to help easily and automatically deploy books online with GitHub or GitLab. For example, if you chose `github` for the `include_ci` cookiecutter option, your book template was created with a GitHub actions workflow file that, once pushed to GitHub, automatically renders and pushes your book to the `gh-pages` branch of your repo and hosts it on GitHub Pages when a push or pull request is made to the main branch.
+You can access the web version of this course at: [https://github.com/TheDataScienceLabs/DSLab_Probability](https://thedatasciencelabs.github.io/DSLab_Probability)
 
 ## Contributors
 

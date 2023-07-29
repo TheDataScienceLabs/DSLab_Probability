@@ -4,13 +4,13 @@
 
 **By Kindyl King, Mireille Boutin, and Christopher Janjigian with Jackson Fields and Prahas Pattem**
 
-Welcome to The Data Science Labs on Probability! This is a one-credit course to accompany ECE302, MA416, STAT416, or any other introductory course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
+Welcome! This is a one-credit course designed to accompany ECE302, MA416, STAT416, or any other introductory course on probability. Throughout this course, you will explore applications of probability to problems in data science. Additionally, you will gain practical experience in programming with Python and learn how to use Arduino sensors and microprocessors.
 
-This course requires no work outside of the lab. It has no homework, quizzes, tests, or exams. All work is performed during the 150 minutes spent in the lab each week. Our friendly undergraduate instructors will assist you and answer all your questions during lab time.
+This course requires no work outside of the lab. There are no homework assignments, quizzes, tests, or exams. All work will be performed during the 150 minutes spent in the lab each week. Our friendly undergraduate instructors will be available to assist you and answer all your questions during lab time.
 
-Prior experience with at least one DS Lab or Python is a prerequisite for taking this course. Additionally, ECE302, MA416, STAT416, or any other introductory course on probability, is a co-requisite for this course.
+Prior experience with at least one DS Lab or Python is a prerequisite for taking this course. Additionally, ECE302, MA416, STAT416, or any other introductory course on probability is a co-requisite for this course.
 
-Purdue Students: You can earn Honors credit for ECE302, MA416, or STAT416 by taking this lab. See the syllabus for details.
+Purdue Students: You have the opportunity to earn Honors credit for ECE302, MA416, or STAT416 by taking this lab. Refer to the syllabus for more details.
 <br>
 
 ## More Information and Contact
@@ -18,7 +18,8 @@ Purdue Students: You can earn Honors credit for ECE302, MA416, or STAT416 by tak
 For more information regarding this and the other available Data Science Labs, visit the following link:
 https://engineering.purdue.edu/~mboutin/Data_Science_labs.html
 
-Contact Professor Boutin at mboutin@purdue.edu if you have any more questions regarding this course.
+If you have any further questions about this course, feel free to contact Professor Boutin at mboutin@purdue.edu.
+
 <br>
 
 ## How to Get Started
@@ -35,4 +36,4 @@ If you have any questions or encounter difficulties during the labs, don't hesit
 
 ## Acknowledgements
 
-The development of this course was supported by the Purdue's Elmore Family School of Electrical and Computer Engineering and Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support.
+The development of this course was supported by Purdue's Elmore Family School of Electrical and Computer Engineering and the Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support.
