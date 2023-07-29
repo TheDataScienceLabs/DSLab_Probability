@@ -2,7 +2,7 @@
 
 ## The Data Science Labs on Probability
 
-**By Kindyl King, Mireille Boutin, and Christopher Janjigian with our names**
+**By Kindyl King, Mireille Boutin, and Christopher Janjigian with Jackson Fields and Prahas Pattem**
 
 Welcome to The Data Science Labs on Probability! This is a one-credit course to accompany ECE302, MA416, STAT416, or any other introductory course on probability. In this course, you will explore applications of probability to problems in data science. You will also practice programming in Python and how to use Arduino sensors and microprocessors.
 
