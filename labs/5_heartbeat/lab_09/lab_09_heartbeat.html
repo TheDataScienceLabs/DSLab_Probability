@@ -493,14 +493,14 @@ document.write(`
 <p>We will be acquiring the data using a microcontroller. A microcontroller is a very small general purpose computer good at communicating with electronic sensors. The specific microcontroller we will use is called the Raspberry Pi Pico. Conveniently, it runs Python code with a ligh version of python called MicroPython.</p>
 <section id="loading-firmware-onto-the-microcontroller">
 <h3>Loading firmware onto the microcontroller<a class="headerlink" href="#loading-firmware-onto-the-microcontroller" title="Permalink to this heading">#</a></h3>
-<p>Use Thonny’s file manager to transfer <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file and the <code class="docutils literal notranslate"><span class="pre">max30102</span></code> folder to the Pico. You can find these in <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability">this github repository</a>. Now, whenever you plug in the pico, it will run <a class="reference external" href="http://main.py">main.py</a>. The <code class="docutils literal notranslate"><span class="pre">max30102</span></code> folder is a module that functions as the MAX30102 sensor driver ported to MicroPython, and the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file has the necessary to connect to the sensor and start reading your pulse when you put your finger on the sensor.</p>
+<p>Use Thonny’s file manager to transfer <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/labs/shared_files/heart_rate_estimation/main.py"><code class="docutils literal notranslate"><span class="pre">main.py</span></code></a> file and the <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/tree/main/book/labs/shared_files/heart_rate_estimation/max30102"><code class="docutils literal notranslate"><span class="pre">max30102</span></code></a> folder to the Pico. Now, whenever you plug in the pico, it will run <a class="reference external" href="http://main.py">main.py</a>. The <code class="docutils literal notranslate"><span class="pre">max30102</span></code> folder is a module that functions as the MAX30102 sensor driver ported to MicroPython, and the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file has the necessary to connect to the sensor and start reading your pulse when you put your finger on the sensor.</p>
 </section>
 <section id="heart-rate-sensor">
 <h3>Heart Rate Sensor<a class="headerlink" href="#heart-rate-sensor" title="Permalink to this heading">#</a></h3>
 <p>You will collect data today using a <strong>MAX30102 Pulse Oximeter and Heart Rate Sensor</strong>, but you will only use the Heart Rate Sensor. The module MAX30102 consists of two different types of LEDs (Red and IR) and a photodetector.</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p><img src="images/MAX30102.png" alt="MAX30102" width="500"/></p></th>
+<tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102.png" alt="MAX30102" width="500"/></p></th>
 </tr>
 </thead>
 <tbody>
@@ -515,7 +515,7 @@ document.write(`
 <p>To use the heart rate sensor there are only four pins to connect with our microcontroller: power (VIN), ground (GND), and the two I2C pins (SCL and SDA).</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p><img src="images/MAX30102_pins.png" alt="MAX30102_pins" width="500"/></p></th>
+<tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102_pins.png" alt="MAX30102_pins" width="500"/></p></th>
 </tr>
 </thead>
 <tbody>
