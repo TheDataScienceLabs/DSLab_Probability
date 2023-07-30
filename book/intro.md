@@ -11,7 +11,6 @@ This course requires no work outside of the lab. There are no homework assignmen
 Prior experience with at least one DS Lab or Python is a prerequisite for taking this course. Additionally, ECE302, MA416, STAT416, or any other introductory course on probability is a co-requisite for this course.
 
 Purdue Students: You have the opportunity to earn Honors credit for ECE302, MA416, or STAT416 by taking this lab. Refer to the syllabus for more details.
-<br>
 
 ## More Information and Contact
 
@@ -19,8 +18,6 @@ For more information regarding this and the other available Data Science Labs, v
 https://engineering.purdue.edu/~mboutin/Data_Science_labs.html
 
 If you have any further questions about this course, feel free to contact Professor Boutin at mboutin@purdue.edu.
-
-<br>
 
 ## How to Get Started
 
