@@ -443,17 +443,19 @@ document.write(`
 </section>
 <section id="span-style-color-orange-a-monte-carlo-experiment-span">
 <h2><span style="color:orange;"> A Monte Carlo Experiment </span><a class="headerlink" href="#span-style-color-orange-a-monte-carlo-experiment-span" title="Permalink to this heading">#</a></h2>
-<p>Recall that a uniform random variable <span class="math notranslate nohighlight">\(U\)</span> on the interval <span class="math notranslate nohighlight">\((0,1)\)</span> has a probability density function defined as follows:
-$<span class="math notranslate nohighlight">\( f_U(u) = \begin{cases}
-    1 &amp;, 0&lt;u&lt;1 \\
-    0 &amp;, \text{ otherwise}
-\end{cases} \)</span>$</p>
+<p>Recall that a uniform random variable <span class="math notranslate nohighlight">\(U\)</span> on the interval <span class="math notranslate nohighlight">\((0,1)\)</span> has a probability density function defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} f_U(u) = \begin{cases}
+    1 , &amp;0&lt;u&lt;1 \\
+    0 , &amp;\text{ otherwise}
+\end{cases} \end{split}\]</div>
 <p>So the probability <span class="math notranslate nohighlight">\(U\)</span> takes a value in a subinterval <span class="math notranslate nohighlight">\((s,t)\)</span> of <span class="math notranslate nohighlight">\((0,1)\)</span> is exactly the length <span class="math notranslate nohighlight">\(t-s\)</span> of the subinterval.</p>
-<p>More genrerally, a uniform random variable <span class="math notranslate nohighlight">\(V\)</span> on the interval <span class="math notranslate nohighlight">\((a,b)\)</span> has probability density function
-$<span class="math notranslate nohighlight">\( f_V(v) = \begin{cases}
-    \frac{1}{b-a} &amp;, a&lt;v&lt;b \\
-    0 &amp;, \text{ otherwise}
-\end{cases} \)</span>$</p>
+<p>More genrerally, a uniform random variable <span class="math notranslate nohighlight">\(V\)</span> on the interval <span class="math notranslate nohighlight">\((a,b)\)</span> has probability density function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} f_V(v) = \begin{cases}
+    \frac{1}{b-a}, &amp;a&lt;v&lt;b \\
+    0, &amp;\text{ otherwise}
+\end{cases} \end{split}\]</div>
 <section id="span-style-color-red-exercise-1-span">
 <h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
 <p>If <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(U_2\)</span> are uniform random variables on the interval <span class="math notranslate nohighlight">\((0,1)\)</span>, then the ordered pair <span class="math notranslate nohighlight">\((U_1,U_2)\)</span> follows a uniform distribution within the square of side length 1 centered at <span class="math notranslate nohighlight">\(\left(\frac12,\frac12\right)\)</span>.</p>
