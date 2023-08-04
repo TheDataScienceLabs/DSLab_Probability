@@ -475,9 +475,9 @@ document.write(`
 <p>An ideal binary random number generator would have approximately the same number of ones and zeros in a sequence. The Monobit Frequency Test quantifies how close the fraction of ones in the sequence matches <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. The steps of the test are as follows:</p>
 <ol class="arabic simple">
 <li><p>For each bit within the given binary sequence <span class="math notranslate nohighlight">\(\varepsilon_1,\varepsilon_2,\dots,\varepsilon_{n}\)</span>, where <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> is a binary bit, apply the transformation <span class="math notranslate nohighlight">\(X_i = 2\varepsilon_i - 1\)</span> for <span class="math notranslate nohighlight">\(i=1,2,\dots,n\)</span>. This transformation turns <span class="math notranslate nohighlight">\(0\)</span>s and <span class="math notranslate nohighlight">\(1\)</span>s into <span class="math notranslate nohighlight">\(\pm 1\)</span></p></li>
-<li><p>Compute <span class="math notranslate nohighlight">\(S_n\)</span>, the sum of the transformed sequence: $<span class="math notranslate nohighlight">\(S_n = \sum_{i=1}^{n} X_i\)</span>$</p></li>
-<li><p>Compute the value of <span class="math notranslate nohighlight">\(s\)</span> using the formula: $<span class="math notranslate nohighlight">\( s = \frac{|S_n|}{\sqrt{n}}\)</span>$</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(s &gt; 2.57583\)</span>, then conclude that the sequence <span class="math notranslate nohighlight">\((\varepsilon_1,\varepsilon_2,\dots,\varepsilon_n)\)</span> is non-random. The best-case scenario for this computation is when <span class="math notranslate nohighlight">\(s = 0\)</span>, indicating an equal number of 1s and 0s in the sequence.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(S_n\)</span>, the sum of the transformed sequence: <span class="math notranslate nohighlight">\( S_n = \sum_{i=1}^{n} X_i \)</span></p></li>
+<li><p>Compute the value of <span class="math notranslate nohighlight">\(s\)</span> using the formula: <span class="math notranslate nohighlight">\( s = \frac{|S_n|}{\sqrt{n}} \)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(s &gt; 2.57583\)</span>, then conclude that the sequence <span class="math notranslate nohighlight">\((\varepsilon_1,\varepsilon_2,\dots,\varepsilon_n)\)</span> is non-random. The best-case scenario for this computation is when <span class="math notranslate nohighlight">\(s = 0\)</span>, indicating an equal number of <span class="math notranslate nohighlight">\(1\)</span>s and <span class="math notranslate nohighlight">\(0\)</span>s in the sequence.</p></li>
 </ol>
 <p>According to NIST, the parameter <span class="math notranslate nohighlight">\(n\)</span> (the length of the binary sequence) should be at least 100.</p>
 </section>
@@ -493,7 +493,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Divide the binary data values <span class="math notranslate nohighlight">\(X_1,X_2,\dots,X_{M\cdot N}\)</span> into <span class="math notranslate nohighlight">\(N\)</span> non-overlapping blocks of length <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
 <li><p>For each block, calculate the proportion of ones that appear in the block’s length <span class="math notranslate nohighlight">\(M\)</span> sequence. Denote the proportion of ones in block <span class="math notranslate nohighlight">\(i\)</span> as <span class="math notranslate nohighlight">\(\pi_i\)</span> for <span class="math notranslate nohighlight">\(i=1,2,\dots,N\)</span>.</p></li>
-<li><p>Compute the value of <span class="math notranslate nohighlight">\(t\)</span> using the formula: $<span class="math notranslate nohighlight">\( t = 4M \sum_{i=1}^N \left(\pi_i-\frac12 \right)^2. \)</span>$</p></li>
+<li><p>Compute the value of <span class="math notranslate nohighlight">\(t\)</span> using the formula: <span class="math notranslate nohighlight">\( t = 4M \sum_{i=1}^N \left(\pi_i-\frac12 \right)^2 \)</span></p></li>
 <li><p>If <span class="math notranslate nohighlight">\(G(N/2,t/2) &lt; 0.01\)</span>, then conclude that the sequence <span class="math notranslate nohighlight">\((X_1,X_2,\dots,X_{M\cdot N})\)</span> is non-random. The function <span class="math notranslate nohighlight">\(G\)</span> represents the normalized incomplete Gamma function.</p></li>
 </ol>
 <p>NIST recommends using values such that <span class="math notranslate nohighlight">\(20 \leq M &lt; 100\)</span> and <span class="math notranslate nohighlight">\(N \leq 100\)</span>.</p>
@@ -536,8 +536,12 @@ document.write(`
     \vdots \\
     T_n &amp;= Y_n + Y_{n-1} + \cdots Y_1 \\
 \end{align*}\]</div>
-<ol class="arabic simple">
-<li><p>Find the maximum values: $<span class="math notranslate nohighlight">\(z_{\text{forward}} = \max\{|S_1|,|S_2|,\dots,|S_n|\}, \quad z_{\text{backward}} = \max\{|T_1|,|T_2|,\dots,|T_n|\}.\)</span>$</p></li>
+<ol class="arabic simple" start="3">
+<li><p>Find the maximum values:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[z_{\text{forward}} = \max\{|S_1|,|S_2|,\dots,|S_n|\}, \quad z_{\text{backward}} = \max\{|T_1|,|T_2|,\dots,|T_n|\}\]</div>
+<ol class="arabic simple" start="4">
 <li><p>Compute the values of <span class="math notranslate nohighlight">\(\rho\)</span> using the formula:</p></li>
 </ol>
 <div class="amsmath math notranslate nohighlight">
@@ -578,8 +582,8 @@ document.write(`
 <p>A run is defined as a series of consecutive values of the same kind. For example, the sequence <span class="math notranslate nohighlight">\(0011010000100111\)</span> has 8 runs. Here are the steps of the test:</p>
 <ol class="arabic simple">
 <li><p>Count the number of runs <span class="math notranslate nohighlight">\(R\)</span> in the sequence <span class="math notranslate nohighlight">\((X_1,X_2,\dots,X_n)\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(n_0\)</span> be the number of zeros and <span class="math notranslate nohighlight">\(n_1\)</span> be the number of ones in the sequence. Compute the value of <span class="math notranslate nohighlight">\(q\)</span> using the formula: $<span class="math notranslate nohighlight">\(q = \frac{|R - \overline{R}|}{u}\)</span><span class="math notranslate nohighlight">\( where \)</span><span class="math notranslate nohighlight">\(\overline{R} = \frac{2n_0n_1}{n}+1,\quad u^2=\frac{2n_0n_1(2n_0n_1-n_0-n_1)}{n^2(n+1)}.\)</span><span class="math notranslate nohighlight">\( Here,
-\)</span>\overline{R}$ represents the expected number of runs in the sequence.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(n_0\)</span> be the number of zeros and <span class="math notranslate nohighlight">\(n_1\)</span> be the number of ones in the sequence. Compute the value of <span class="math notranslate nohighlight">\(q\)</span> using the formula: <span class="math notranslate nohighlight">\( q = \frac{|R - \overline{R}|}{u} \)</span> where <span class="math notranslate nohighlight">\( \overline{R} = \frac{2n_0n_1}{n}+1,\quad u^2=\frac{2n_0n_1(2n_0n_1-n_0-n_1)}{n^2(n+1)}. \)</span> Here,
+<span class="math notranslate nohighlight">\(\overline{R}\)</span> represents the expected number of runs in the sequence.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(q &gt; 2.57583\)</span>, then conclude that the sequence <span class="math notranslate nohighlight">\((X_1,X_2,\dots,X_n)\)</span> is non-random.</p></li>
 </ol>
 </section>
