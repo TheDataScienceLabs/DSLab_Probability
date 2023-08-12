@@ -9,9 +9,9 @@ Report bugs using GitHub issues.
 
 If you are reporting a bug, please include:
 
-* Your operating system name and version.
-* Any details about your local setup that might be helpful in troubleshooting.
-* Detailed steps to reproduce the bug.
+- Your operating system name and version.
+- Any details about your local setup that might be helpful in troubleshooting.
+- Detailed steps to reproduce the bug.
 
 ## Fix Bugs
 
@@ -25,8 +25,8 @@ and "help wanted" is open to whoever wants to implement it.
 
 ## Write Documentation
 
-The Data Science Labs on Differential and Integral Calculus could always use more documentation, whether as part of the
-official The Data Science Labs on Differential and Integral Calculus docs, in docstrings, or even on the web in blog posts,
+The Data Science Labs on Probability could always use more documentation, whether as part of the
+official The Data Science Labs on Probability docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 ## Submit Feedback
@@ -35,14 +35,14 @@ The best way to send feedback is to file an issue on GitHub.
 
 If you are proposing a feature:
 
-* Explain in detail how it would work.
-* Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
+- Explain in detail how it would work.
+- Keep the scope as narrow as possible, to make it easier to implement.
+- Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
 ## Get Started
 
-Ready to contribute? Here's how to set up `The Data Science Labs on Differential and Integral Calculus` for local development.
+Ready to contribute? Here's how to set up `The Data Science Labs on Probability` for local development.
 
 1. Fork the repo on GitHub.
 2. Clone your fork locally.
@@ -53,4 +53,4 @@ Ready to contribute? Here's how to set up `The Data Science Labs on Differential
 
 ## Code of Conduct
 
-Please note that the The Data Science Labs on Differential and Integral Calculus project is released with a [Contributor Code of Conduct](CONDUCT.md). By contributing to this project you agree to abide by its terms.
+Please note that the The Data Science Labs on Probability project is released with a [Contributor Code of Conduct](CONDUCT.md). By contributing to this project you agree to abide by its terms.
