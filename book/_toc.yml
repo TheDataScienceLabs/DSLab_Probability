@@ -23,7 +23,7 @@ parts:
       - file: labs/4_rng/lab_08/lab_08_pi.ipynb
   - caption: Music Gneration
     chapters:
-      - file: labs/5_heartbeat/lab_09/Music_Generation_Lab.ipynb
+      - file: labs/6_music_generation/lab_09/Music_Generation_Lab.ipynb
   - caption: Extra Materials
     chapters:
       - file: extra_materials/intro_to_breadboards/intro_to_breadboards.ipynb
