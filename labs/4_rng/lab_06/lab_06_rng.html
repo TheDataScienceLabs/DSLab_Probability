@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Week 9: Random Number Generators &#8212; The Data Science Labs on Probability</title>
   
@@ -15,53 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/4_rng/lab_06/lab_06_rng';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Week 8: Motion Detection" href="../../3_video/lab_05/lab_05_motion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -78,32 +77,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -111,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -119,16 +101,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -143,6 +134,8 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../../../intro.html">
   
@@ -156,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Probability - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Probability - Home"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="The Data Science Labs on Probability - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -191,6 +191,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lab_07/lab_07_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lab_08/lab_08_pi.html">Week 11-12: Estimating Pi with a RNG</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../6_naive_bayes_classifier/naive_bayes_classifier.html">Week 13: Naive Bayes Classifiers</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
@@ -211,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -220,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -350,27 +354,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -391,12 +387,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-applications-of-random-number-generators-span"><span style="color:orange;">1. Applications of Random Number Generators </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-making-an-rng-span"><span style="color:orange;">2. Making an RNG </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-random-number-generators"><span style="color:orange;">1. Applications of Random Number Generators </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-an-rng"><span style="color:orange;">2. Making an RNG </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-a">Method A</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-b">Method B</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-rate-sensor">Heart Rate Sensor</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-it-up">Wiring It Up</a></li>
@@ -407,13 +403,13 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-sensor">Using the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-c">Method C</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-d">Method D</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -424,14 +420,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-9-random-number-generators">
-<h1>Week 9: Random Number Generators<a class="headerlink" href="#week-9-random-number-generators" title="Permalink to this heading">#</a></h1>
+<h1>Week 9: Random Number Generators<a class="headerlink" href="#week-9-random-number-generators" title="Link to this heading">#</a></h1>
 <p><font size="6"> Laboratory 6 </font> <br>
 <font size="3"> Last updated July 26, 2023 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
 <ul class="simple">
 <li><p>N/A</p></li>
@@ -446,8 +442,8 @@ document.write(`
 <li><p>Thonny &amp; MicroPython</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Raspberry Pi Pico</p></li>
 <li><p>MAX30102 Pulse sensor</p></li>
@@ -469,34 +465,34 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="span-style-color-orange-1-applications-of-random-number-generators-span">
-<h2><span style="color:orange;">1. Applications of Random Number Generators </span><a class="headerlink" href="#span-style-color-orange-1-applications-of-random-number-generators-span" title="Permalink to this heading">#</a></h2>
+<section id="applications-of-random-number-generators">
+<h2><span style="color:orange;">1. Applications of Random Number Generators </span><a class="headerlink" href="#applications-of-random-number-generators" title="Link to this heading">#</a></h2>
 <p>Random number generators (RNGs) are the foundation of computer security. The ability to send encrypted messages depends on RNGs. Secure systems are undoubtedly important as the value of our personal data is ever increasing. Whether it’s financial information, medical records, or simply messages to a friend, information is protected by generating random numbers unpredictable enough to prevent a hacker from guessing what’s next. Random numbers are needed for a variety of tasks like drawing lottery numbers, choosing random samples for scientific studies, and creating video games.</p>
 <p>RNGs have a surprisingly long history, dating back 5000 years ago with coin-flipping and dice-rolling as the main methods. Many modern approaches are hardware-based as well but much faster than rolling dice repeatedly. For example, in 1996, Silicon Graphics patented a system of random number generation using a wall of lava lamps. The exact state of a lava lamp, let alone multiple, at any time is too complex to model and predict, and so any number based on this chaotic system is secure. Another true RNG is <a class="reference external" href="https://www.random.org/">RANDOM.ORG</a>, which uses multiple radio receivers capturing atmospheric noise to create its random numbers.</p>
 <p>True RNGs (TRNGs) are characterized by having no predictable patterns in generated sequences and are generally slow to output a large amount of random numbers. TRNGs are relatively hard to implement as a computer program, so pseudorandom number generators (PRNGs) allow computers to simulate randomness through a deterministic process or an easy rule for the program to follow. PRNGs need a starting value called a seed and then based on the seed value pull up a previously created list of random numbers. PRNGs are not always safe enough to use for cryptographic purposes, but having a truly random seed makes them less predictable.</p>
 <p>In this lab, we will create a random binary sequence of ones and zeros using different hardware methods and test them mathematically to judge the randomness of the results.</p>
 <p>We only need a random binary sequence to generate random numbers in any range. The reasons behind this are that we can convert between number bases and that computers store numbers in a finite amount of bits. A bit is the smallest unit of information a computer can store. Bits are either 0 or 1. Python uses 32 or 64 bits to store floating-point numbers and integers.</p>
 </section>
-<section id="span-style-color-orange-2-making-an-rng-span">
-<h2><span style="color:orange;">2. Making an RNG </span><a class="headerlink" href="#span-style-color-orange-2-making-an-rng-span" title="Permalink to this heading">#</a></h2>
+<section id="making-an-rng">
+<h2><span style="color:orange;">2. Making an RNG </span><a class="headerlink" href="#making-an-rng" title="Link to this heading">#</a></h2>
 <section id="method-a">
-<h3>Method A<a class="headerlink" href="#method-a" title="Permalink to this heading">#</a></h3>
+<h3>Method A<a class="headerlink" href="#method-a" title="Link to this heading">#</a></h3>
 <p>We will use the Raspberry Pi Pico’s internal temperature sensor, as in Lab 2.</p>
 <p>Collect a thousand temperature measurements. For each measurement, subtract 10,000 and convert the result to binary. Continue this process for each measurement. The result will be our random sequence.</p>
 <p>For example, if the temperature measurements are <span class="math notranslate nohighlight">\(10003, 10002, 10003\)</span>, and <span class="math notranslate nohighlight">\(10005\)</span>, after subtracting, we get <span class="math notranslate nohighlight">\(3, 2, 3, 5\)</span>.
 The number 3 is represented as 11 in binary, 2 as 10, and 5 as 101.
 Therefore, our final binary sequence is <code class="docutils literal notranslate"><span class="pre">111011101</span></code>.</p>
 </section>
-<section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1</span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
 <p>Use Method A and print the first 10 binary digits of the sequence.</p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 1 Below </h3></section>
 <section id="method-b">
-<h3>Method B<a class="headerlink" href="#method-b" title="Permalink to this heading">#</a></h3>
+<h3>Method B<a class="headerlink" href="#method-b" title="Link to this heading">#</a></h3>
 <section id="heart-rate-sensor">
-<h4>Heart Rate Sensor<a class="headerlink" href="#heart-rate-sensor" title="Permalink to this heading">#</a></h4>
+<h4>Heart Rate Sensor<a class="headerlink" href="#heart-rate-sensor" title="Link to this heading">#</a></h4>
 <p>You will collect data today using a <strong>MAX30102 Pulse Oximeter and Heart Rate Sensor</strong>, but you will only use the Heart Rate Sensor. The MAX30102 module consists of two different types of LEDs (Red and IR) and a photodetector.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102.png" alt="MAX30102" width="500"/></p></th>
 </tr>
@@ -506,9 +502,10 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </tr>
 </tbody>
 </table>
+</div>
 <p>The main idea is that the light emitted by each LED is directed to the skin, and the photodetector measures the amount of light reflected. This method of pulse detection through light is called Photoplethysmogram. The reflection of infrared light (IR) changes proportionally to the volume of blood in the artery and is synchronized with the cardiac cycle. During the heartbeat, the volume of blood is high, and after each heartbeat, it is low.</p>
 <p>“During the systolic phase, the volume of blood in arteries is more; this is because during this phase heart contracts and pushes oxygen-rich blood to all the tissues and organs. The systolic phase causes more light is absorbed by the blood cells. Therefore the amount of light detected by the photode-tector during the systolic phase is low. During the diastolic phase, the blood has flown back into the heart. Therefore, during the diastole phase, the light detected by the photo-detector increases due to a decrease in the blood volume.” [3]</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/PPG_generation_and_waveform_features.jpg" alt="Principle of phototoplethysmogram generation and waveform features" width="300"/></p></th>
 </tr>
@@ -518,13 +515,14 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </tr>
 </tbody>
 </table>
+</div>
 <p>The figure above shows that the PPG waveform is obtained by inverting the intensity of the light detected with the photodetector after the light is reflected or transmitted through the human tissue [2]. In the case of our sensor, it would be reflected since the MAX30102 is of the reflective type.</p>
 </section>
 <section id="wiring-it-up">
-<h4>Wiring It Up<a class="headerlink" href="#wiring-it-up" title="Permalink to this heading">#</a></h4>
+<h4>Wiring It Up<a class="headerlink" href="#wiring-it-up" title="Link to this heading">#</a></h4>
 <p><strong>MAKE SURE PICO IS UNPLUGGED FROM COMPUTER BEFORE WIRING</strong></p>
 <p>To use the heart rate sensor, there are only four pins to connect with our microcontroller: power (VIN), ground (GND), and the two I2C pins (SCL and SDA).</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102_pins.png" alt="MAX30102_pins" width="500"/></p></th>
 </tr>
@@ -534,9 +532,10 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </tr>
 </tbody>
 </table>
+</div>
 <p>Unplug your microcontroller from the computer and wire up the MAX30102 sensor according to the following instructions, inspecting the data sheet for the Pico:</p>
 <p><img alt="pico_datasheet" src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/Pico%20Datasheet.png" /></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>MAX30102</p></th>
 <th class="head"><p>Module MAX30102</p></th>
@@ -557,6 +556,7 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </tr>
 </tbody>
 </table>
+</div>
 <p>You will also need to connect a ceramic capacitor between the 3V3(OUT) pin and the GND pin you are using.</p>
 <p>Here are some images of the completed breadboard:</p>
 <p><img alt="wiring_example" src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/wiring_example.jpg" /></p>
@@ -564,7 +564,7 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 <p><strong>Note: Have your TA check over your wiring before continuing onward.</strong></p>
 </section>
 <section id="loading-firmware-onto-the-microcontroller">
-<h4>Loading firmware onto the microcontroller<a class="headerlink" href="#loading-firmware-onto-the-microcontroller" title="Permalink to this heading">#</a></h4>
+<h4>Loading firmware onto the microcontroller<a class="headerlink" href="#loading-firmware-onto-the-microcontroller" title="Link to this heading">#</a></h4>
 <p>Plug the pico into your computer while holding the BOOTSEL button. Open up Thonny. <a class="reference external" href="https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/3">Follow the directions here</a> to install the MicroPython firmware on the Pico. <a class="reference external" href="https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/4">The following page at that link</a> has directions for testing to make sure it’s working.</p>
 <p>Use Thonny’s file manager to transfer <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/labs/shared_files/heart_rate_estimation/main.py"><code class="docutils literal notranslate"><span class="pre">main.py</span></code></a> file and the <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/tree/main/book/labs/shared_files/heart_rate_estimation/max30102"><code class="docutils literal notranslate"><span class="pre">max30102</span></code></a> folder to the Pico. The <code class="docutils literal notranslate"><span class="pre">max30102</span></code> folder is a module that functions as the MAX30102 sensor driver ported to MicroPython, and the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file has the necessary to connect to the sensor and start reading your pulse when you put your finger on the sensor.</p>
 <hr class="docutils" />
@@ -573,11 +573,11 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </section>
 <hr class="docutils" />
 <section id="acquiring-data">
-<h3>Acquiring data!<a class="headerlink" href="#acquiring-data" title="Permalink to this heading">#</a></h3>
+<h3>Acquiring data!<a class="headerlink" href="#acquiring-data" title="Link to this heading">#</a></h3>
 <p><strong>Read this carefully.</strong> In Thonny, run <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. You should see numbers printing on the terminal, and the LED on your Pico should be on. (If this is not the case, go back and check your wiring and ensure you have uploaded the required files onto the Pico).</p>
 <p>Next, while the readings are printing, open up the <em>“Run”</em> dropdown menu in the top left corner of Thonny and click on <em>“Disconnect”</em> at the bottom of the menu. This will allow the notebook to access the MAX30102 data from the Pico. Once the Pico is disconnected, you can run the two code cells below to create a live graph of your pulse.</p>
 <section id="using-the-sensor">
-<h4>Using the sensor<a class="headerlink" href="#using-the-sensor" title="Permalink to this heading">#</a></h4>
+<h4>Using the sensor<a class="headerlink" href="#using-the-sensor" title="Link to this heading">#</a></h4>
 <p>Download the <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/labs/shared_files/heart_rate_estimation/hbconnection.py">hbconnection.py</a> file from the repository and add it to your lab folder to access its functions in the following cell.</p>
 <p>The following cell will show you the data taken by the sensor in real-time.</p>
 <div class="cell docutils container">
@@ -626,19 +626,19 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 <p>If you’re having significant issues collecting heartbeat data, you may use the <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/4d804f25560ee646260fd581fa7246bd8cc4af5d/book/labs/shared_files/heart_rate_estimation/heartbeat_backup.txt">heartbeat_backup.txt</a> file with the permission of your instructor.</p>
 </section>
 </section>
-<section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2</span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
 <p>To get to a final random sequence, use your measurements from <code class="docutils literal notranslate"><span class="pre">heartbeat_ini.txt</span></code> (or <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/labs/shared_files/heart_rate_estimation/heartbeat_backup.txt"><code class="docutils literal notranslate"><span class="pre">heartbeat_backup.txt</span></code></a> if you were having trouble with the data collection). For each measurement, subtract the minimum value and convert the result to binary. Continue for all the measurements like in Method A.</p>
 <p>After collecting a few seconds’ worth of heartbeat measurements, apply Method B and print the first 10 binary digits of the resulting sequence.</p>
 <p><em>Hint: look into the <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code> function</em></p>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 2 Below </h3></section>
 <section id="method-c">
-<h3>Method C<a class="headerlink" href="#method-c" title="Permalink to this heading">#</a></h3>
+<h3>Method C<a class="headerlink" href="#method-c" title="Link to this heading">#</a></h3>
 <p>A camera, like any sensor, is susceptible to noise, and we can utilize this noise for a random number generator (RNG). Follow the wiring instructions from Lab 4 to connect the camera component to the Pico.</p>
 <p>Our cameras return a grayscale image with dimensions of <span class="math notranslate nohighlight">\(96\times 96\)</span>. If we capture a noisy scene, we can flatten the image into a 1-dimensional sequence of length <span class="math notranslate nohighlight">\(96^2 = 9216\)</span> and transform it into a binary sequence based on parity (whether the values are even or odd). You can choose how to transform the <span class="math notranslate nohighlight">\(96\times 96\)</span> image array into a 1-dimensional sequence. <strong>For the noisy scene, we’ll use the carpeted floor of the room</strong>.</p>
 </section>
-<section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3</span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
 <p>Use Method C on an image you captured and print the first 10 binary digits of the sequence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -687,7 +687,7 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </div>
 <h3 style="background-color:lightblue"> Write Answers for Exercise 3 Below </h3></section>
 <section id="method-d">
-<h3>Method D<a class="headerlink" href="#method-d" title="Permalink to this heading">#</a></h3>
+<h3>Method D<a class="headerlink" href="#method-d" title="Link to this heading">#</a></h3>
 <p>The Mersenne Twister is a pseudorandom number generator (PRNG) implemented in many products, including Python. It derives its name from a special type of prime number known as a Mersenne prime. Mersenne primes are prime numbers in the form of <span class="math notranslate nohighlight">\(2^p-1\)</span>, and as of December 2022, only 51 Mersenne primes have been discovered (with 48 verified). The intricate details of the Mersenne Twister algorithm go beyond the scope of this lab. Surprisingly, the algorithm itself doesn’t involve complex arithmetic operations like multiplication or addition.</p>
 <p>Here’s a quick example on how to use the <code class="docutils literal notranslate"><span class="pre">randint</span></code> function from Python’s random module, which relies on the Mersenne Twister.</p>
 <div class="cell docutils container">
@@ -702,8 +702,8 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </div>
 </section>
 </section>
-<section id="span-style-color-green-reflection-span">
-<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<section id="reflection">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>List whether each method we used was truly random or pseudorandom.<br></p></li>
 <li><p>Which part of the lab did you find the most challenging? <br></p></li>
@@ -711,7 +711,7 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 </ol>
 <h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Elgendi M. On the analysis of fingertip photoplethysmogram signals. Curr Cardiol Rev. 2012 Feb;8(1):14-25. doi: 10.2174/157340312801215782.</p></li>
 <li><p>Junyung Park, Hyeon Seok Seok, Sang-Su Kim1 and Hangsik Shin. Photoplethysmogram Analysis and Applications: An Integrative Review. Front. Physiol., 01 March 2022. Sec. Vascular Physiology. <a class="reference external" href="https://doi.org/10.3389/fphys.2021.808451">https://doi.org/10.3389/fphys.2021.808451</a>.</p></li>
@@ -747,7 +747,7 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -775,7 +775,9 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -783,12 +785,12 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-applications-of-random-number-generators-span"><span style="color:orange;">1. Applications of Random Number Generators </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-making-an-rng-span"><span style="color:orange;">2. Making an RNG </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-random-number-generators"><span style="color:orange;">1. Applications of Random Number Generators </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-an-rng"><span style="color:orange;">2. Making an RNG </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-a">Method A</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-b">Method B</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-rate-sensor">Heart Rate Sensor</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wiring-it-up">Wiring It Up</a></li>
@@ -799,13 +801,13 @@ Therefore, our final binary sequence is <code class="docutils literal notranslat
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-sensor">Using the sensor</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-c">Method C</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-d">Method D</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
@@ -855,8 +857,8 @@ By Mireille Boutin, Alden Bradford
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

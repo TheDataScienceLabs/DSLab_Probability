@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off &#8212; The Data Science Labs on Probability</title>
   
@@ -15,53 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/5_heartbeat/lab_09/lab_09_heartbeat';</script>
@@ -69,6 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -76,32 +75,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -109,7 +92,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -117,16 +99,27 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -141,6 +134,8 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../../../intro.html">
   
@@ -154,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Probability - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Probability - Home"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="The Data Science Labs on Probability - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -189,6 +191,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_07/lab_07_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_08/lab_08_pi.html">Week 11-12: Estimating Pi with a RNG</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../6_naive_bayes_classifier/naive_bayes_classifier.html">Week 13: Naive Bayes Classifiers</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
@@ -209,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -218,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -348,27 +354,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -389,9 +387,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-data-points-as-a-random-samples-heart-rate-estimation-span"><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-points-as-a-random-samples-heart-rate-estimation"><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-acquisition">1. Data Acquisition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-firmware-onto-the-microcontroller">Loading firmware onto the microcontroller</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-rate-sensor">Heart Rate Sensor</a></li>
@@ -400,7 +398,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing">2. Pre-processing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
@@ -426,12 +424,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-brief-interpretation-of-some-relevant-ppg-signal-statistics-span"><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation-of-some-relevant-ppg-signal-statistics"><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-introduction-to-linear-regression-span"><span style="color:orange;"> Introduction to Linear Regression </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression"><span style="color:orange;"> Introduction to Linear Regression </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-as-a-random-sample">Fitting as a Random Sample</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators">Estimators</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
@@ -443,7 +441,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -454,15 +452,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-13-15-ppg-signal-modeling-introduction-to-estimators-linear-regresion-and-bias-variance-trade-off">
-<h1>Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off<a class="headerlink" href="#week-13-15-ppg-signal-modeling-introduction-to-estimators-linear-regresion-and-bias-variance-trade-off" title="Permalink to this heading">#</a></h1>
+<h1>Week 13-15: PPG Signal Modeling: Introduction to estimators, linear regresion, and bias-variance trade-off<a class="headerlink" href="#week-13-15-ppg-signal-modeling-introduction-to-estimators-linear-regresion-and-bias-variance-trade-off" title="Link to this heading">#</a></h1>
 <p>Camilo Andrés Martínez Mejía</p>
 <p><font size="6"> Laboratory 9 </font> <br>
 <font size="3"> Last updated May 8, 2023 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
 <ul class="simple">
 <li><p>N/A</p></li>
@@ -477,8 +475,8 @@ document.write(`
 <li><p>Thonny &amp; MicroPython</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Raspberry Pi Pico</p></li>
 <li><p>breadboard</p></li>
@@ -493,20 +491,20 @@ document.write(`
 <p>This is a 3-week lab. Manage your time effectively to complete the lab by the end of the semester. Remember to turn in whatever exercises you have completed at the end of <strong>every lab session</strong>.</p>
 </section>
 <hr class="docutils" />
-<section id="span-style-color-orange-data-points-as-a-random-samples-heart-rate-estimation-span">
-<h2><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span><a class="headerlink" href="#span-style-color-orange-data-points-as-a-random-samples-heart-rate-estimation-span" title="Permalink to this heading">#</a></h2>
+<section id="data-points-as-a-random-samples-heart-rate-estimation">
+<h2><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span><a class="headerlink" href="#data-points-as-a-random-samples-heart-rate-estimation" title="Link to this heading">#</a></h2>
 </section>
 <section id="data-acquisition">
-<h2>1. Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this heading">#</a></h2>
+<h2>1. Data Acquisition<a class="headerlink" href="#data-acquisition" title="Link to this heading">#</a></h2>
 <p>We will be acquiring the data using a microcontroller. A microcontroller is a very small general purpose computer good at communicating with electronic sensors. The specific microcontroller we will use is called the Raspberry Pi Pico. Conveniently, it runs Python code with a ligh version of python called MicroPython.</p>
 <section id="loading-firmware-onto-the-microcontroller">
-<h3>Loading firmware onto the microcontroller<a class="headerlink" href="#loading-firmware-onto-the-microcontroller" title="Permalink to this heading">#</a></h3>
+<h3>Loading firmware onto the microcontroller<a class="headerlink" href="#loading-firmware-onto-the-microcontroller" title="Link to this heading">#</a></h3>
 <p>Use Thonny’s file manager to transfer <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/labs/shared_files/heart_rate_estimation/main.py"><code class="docutils literal notranslate"><span class="pre">main.py</span></code></a> file and the <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/tree/main/book/labs/shared_files/heart_rate_estimation/max30102"><code class="docutils literal notranslate"><span class="pre">max30102</span></code></a> folder to the Pico. Now, whenever you plug in the pico, it will run <a class="reference external" href="http://main.py">main.py</a>. The <code class="docutils literal notranslate"><span class="pre">max30102</span></code> folder is a module that functions as the MAX30102 sensor driver ported to MicroPython, and the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file has the necessary to connect to the sensor and start reading your pulse when you put your finger on the sensor.</p>
 </section>
 <section id="heart-rate-sensor">
-<h3>Heart Rate Sensor<a class="headerlink" href="#heart-rate-sensor" title="Permalink to this heading">#</a></h3>
+<h3>Heart Rate Sensor<a class="headerlink" href="#heart-rate-sensor" title="Link to this heading">#</a></h3>
 <p>You will collect data today using a <strong>MAX30102 Pulse Oximeter and Heart Rate Sensor</strong>, but you will only use the Heart Rate Sensor. The module MAX30102 consists of two different types of LEDs (Red and IR) and a photodetector.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102.png" alt="MAX30102" width="500"/></p></th>
 </tr>
@@ -516,12 +514,13 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>The main idea is that the light is emitted by each LED to the skin and the photodetector measures the amount of light reflected. This method of pulse detection through light is called Photoplethysmogram. The reflection of infrared light (IR) changes proportionally to the volume of blood in the artery and is synchronized with the cardiac cycle. Then during the heartbeat the volume of blood will be high and after each heartbeat then will be low.</p>
 </section>
 <section id="wiring-it-up">
-<h3>Wiring it up<a class="headerlink" href="#wiring-it-up" title="Permalink to this heading">#</a></h3>
+<h3>Wiring it up<a class="headerlink" href="#wiring-it-up" title="Link to this heading">#</a></h3>
 <p>To use the heart rate sensor there are only four pins to connect with our microcontroller: power (VIN), ground (GND), and the two I2C pins (SCL and SDA).</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><img src="https://raw.githubusercontent.com/TheDataScienceLabs/DSLab_Probability/main/book/labs/shared_files/heart_rate_estimation/MAX30102_pins.png" alt="MAX30102_pins" width="500"/></p></th>
 </tr>
@@ -531,8 +530,9 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>Unplug your microcontroller from the computer and wire up the MAX30102 sensor according to the following instructions and inspecting the data sheet for the Pico (<a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Calculus/blob/main/book/labs/2_determine_heart_rate/pico_datasheet.pdf">pico_datasheet.pdf</a> - also save this PDF in the main folder you’re using since it’ll continue to be handy throughout this course). Specifically, look for figure 2 on page 4 :</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>MAX30102</p></th>
 <th class="head"><p>Module MAX30102</p></th>
@@ -553,11 +553,12 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>Note: If you are uncertain about your wiring, then ask for an instructor to check it over. If you are confident in your wiring you can continue.</strong></p>
 <p>Finally, you will have to <strong>modify the lines in the file <code class="docutils literal notranslate"><span class="pre">main.py</span></code> that sets up the I2C bus</strong> according to whichever specific SCL and SDA pins you are using – <em>remember to use the number labeled with GP on the datasheet</em>.</p>
 </section>
 <section id="using-the-sensor">
-<h3>Using the sensor<a class="headerlink" href="#using-the-sensor" title="Permalink to this heading">#</a></h3>
+<h3>Using the sensor<a class="headerlink" href="#using-the-sensor" title="Link to this heading">#</a></h3>
 <p>The following cell will show you the data taken by the sensor in real time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,7 +613,7 @@ Your finger should be barely touching it. <strong>Once you have it situated corr
 </section>
 </section>
 <section id="pre-processing">
-<h2>2. Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this heading">#</a></h2>
+<h2>2. Pre-processing<a class="headerlink" href="#pre-processing" title="Link to this heading">#</a></h2>
 <p>With any data set it is always important to do some preprocessing, since errors always occur in the measurement process or the data may be too raw.</p>
 <p>First, we read the data and plot it.</p>
 <div class="cell docutils container">
@@ -633,8 +634,8 @@ Your finger should be barely touching it. <strong>Once you have it situated corr
 </div>
 </div>
 <p>Note that the x-axis does not represent time directly, only the number of samples used was plotted. We need an array that has the times when each sample was taken.</p>
-<section id="span-style-color-red-exercise-span">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#span-style-color-red-exercise-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise">
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <p>Make an array <code class="docutils literal notranslate"><span class="pre">t</span></code> which has the time corresponding to each measurement and plot the signal with the time array you found.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -705,7 +706,7 @@ Sampling duration: 5.0
 </div>
 </section>
 <section id="id1">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Explain in detail what the two lines of code inside the <code class="docutils literal notranslate"><span class="pre">rolling_centered_average</span></code> function do, then use the function with 5 nearest neighbors to each side and plot the result.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>The following graph helps you understand what happens when you increase and decrease the size of the window in the rolling average.</p>
 <div class="cell docutils container">
@@ -731,11 +732,11 @@ Sampling duration: 5.0
 </div>
 </section>
 <section id="id2">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Briefly explain what happens when you change the number of elements in the rolling average. What happens when it increases and when it decreases?</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
 <section id="id3">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>Select the best number of neighbors to obtain a smoother signal that does not lose the characteristic shape of a ppg signal, and then plot it.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -754,13 +755,13 @@ Sampling duration: 5.0
 </div>
 </section>
 <section id="id4">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>Repeat the previous exercise using a median filter instead of a rolling average filter.</p>
 <p>A median filter rolls across the array like the rolling average filter but instead of returning the average of <span class="math notranslate nohighlight">\(n\)</span> neighbors, it returns the median of the <span class="math notranslate nohighlight">\(n\)</span> neighbors.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
 </section>
 <section id="find-the-period">
-<h2>3. Find the Period<a class="headerlink" href="#find-the-period" title="Permalink to this heading">#</a></h2>
+<h2>3. Find the Period<a class="headerlink" href="#find-the-period" title="Link to this heading">#</a></h2>
 <p>Up to this point you will have noticed that the signal is periodic, so it is convenient to find the period and the point that we will consider as the beginning of the function. Then we will use the period to define windows on the signal.</p>
 <p>We need to find the period. One way to do this is to find the time between two consecutive maximum peaks and then average these values, i.e. we need to find local maxima. To do this we will follow the steps below:</p>
 <ol class="arabic simple">
@@ -919,7 +920,7 @@ Sampling duration: 5.0
 </div>
 </div>
 <section id="id5">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Use the above code to complete the function <code class="docutils literal notranslate"><span class="pre">get_period</span></code>.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -970,7 +971,7 @@ Sampling duration: 5.0
 </div>
 </section>
 <section id="id6">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>Using the period of your heartbeat, compute your heart rate.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -993,7 +994,7 @@ Heart rate: 72.0
 </div>
 </section>
 <section id="id7">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>Do some research on confidence intervals, particularly confidence intervals for the mean. Briefly write down what they are and what they are for. What does the confidence level represent?</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>We can find the confidence interval for the period value. The following function <code class="docutils literal notranslate"><span class="pre">conf_interval</span></code> allows you to find the confidence interval for a population mean. This function uses already implemented methods taken from the <strong>SciPy</strong> library. <strong>SciPy</strong> is a scientific computation library that uses NumPy. It has a lot of nice functions for statistics, optimization, and signal processing.</p>
 <div class="cell docutils container">
@@ -1038,7 +1039,7 @@ Heart rate: 72.0
 </div>
 </section>
 <section id="id8">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>Calculate the confidence interval for the mean of the periods with a confidence level of 0.95 and calculate the heart rate for the confidence interval values.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1069,7 +1070,7 @@ Heart rate interval: (66.67076583738509, 70.43848414136481)
 </section>
 </section>
 <section id="polynomial-fitting-and-windowing">
-<h2>4. Polynomial Fitting and Windowing<a class="headerlink" href="#polynomial-fitting-and-windowing" title="Permalink to this heading">#</a></h2>
+<h2>4. Polynomial Fitting and Windowing<a class="headerlink" href="#polynomial-fitting-and-windowing" title="Link to this heading">#</a></h2>
 <p>We have collected data taking into account a sampling rate, so we discretized our signal and obtained a finite set of points that represents our signal or function. Now we need to find a way to find a fuction that best fits the data and allow us to predict values from a continuos interval. For this task we can use interpolation, but we will work with an approximation from <strong>linear regression by fitting a polynomial</strong>.</p>
 <p>The rolling average technique used above works very well for identifying the locations of large features. Unfortunately, it blurs out some of the fine detail, brings peaks down, and lifts bottoms up. That’s no good if you want to know information like the amplitude or shape of the signal. We can do much better, and for this we will use linear regression.</p>
 <p>Once the period and starting point have been defined, we can select a window that will allow us to define our periodic signal. i.e. we can extract just one cycle of the initial signal.</p>
@@ -1144,13 +1145,13 @@ Heart rate interval: (66.67076583738509, 70.43848414136481)
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "9be9c709a8ca45ecb83d556cf332ff3a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <section id="id9">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>Briefly explain what happens when you increase or decrease the degree of the polynomial.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><p>You may wonder how to choose the correct degree of the polynomial. A parabola has one local maximum or minimum. A cubic polynomial has at most two. A fourth degree polynomial has at most three local maxima and minima.</p>
 <p>Did you find the pattern? There is an empirical criterion which consists in choosing a polynomial of degree one more than the number of local maxima and minima.</p>
 </section>
 <section id="id10">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>Fit a polynomial of degree one more than the number of local maxima and minima of the selected signal cycle. Plot the result.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1175,13 +1176,13 @@ Heart rate interval: (66.67076583738509, 70.43848414136481)
 </div>
 </section>
 <section id="quantifying-the-fit">
-<h3>Quantifying the fit<a class="headerlink" href="#quantifying-the-fit" title="Permalink to this heading">#</a></h3>
+<h3>Quantifying the fit<a class="headerlink" href="#quantifying-the-fit" title="Link to this heading">#</a></h3>
 <p>Note that from a certain point, the polynomial can snake through each point we give it, capturing all the noise. <em>That defeats the purpose of the fit!</em>. Therefore, <strong>It is good practice to choose as low a degree as possible while still matching the data well</strong>. This is called the <strong>parsimony principle</strong>.</p>
 <p>We can quantify how good our regression is, how good our polynomial is, using the <strong>mean square error (MSE)</strong>. This is the average value of the difference between the predicted value and the measured value. If the measured values are <span class="math notranslate nohighlight">\(y_i\)</span> and we are measuring how well a polynomial or function <span class="math notranslate nohighlight">\(f(x_i)\)</span> agrees, then the mean square error is given by the formula
 $<span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=0}^n \left(f(x_i)-y_i\right)^2\)</span>$</p>
 </section>
 <section id="id11">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <p>Write a function which takes a polynomial <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> pairs and returns the mean square error.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 <div class="cell docutils container">
@@ -1217,12 +1218,12 @@ $<span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=0}^n \left(f(x_
 </div>
 </section>
 <section id="id12">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>Interpret the plot above. After what point do we see diminishing returns on the model’s fit? What is the smallest degree of polynomial which has a reasonably low mean square error, in your opinion?</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 </section>
 <section id="id13">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <p>Plot the original signal together with the polynomial of the appropriate degree (use the previous MSE plot to select the appropiate degree).</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 <div class="cell docutils container">
@@ -1652,7 +1653,7 @@ if (outputEl) {{
 </div>
 </section>
 <section id="id14">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <p>Do some research about boxplot graph and make a brief interpretation of the graph shown in the previous cell.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 <div class="cell docutils container">
@@ -1672,12 +1673,12 @@ if (outputEl) {{
 </div>
 </section>
 <section id="id15">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <p>Do some research about violinplot graph and make a brief interpretation of the graph shown in the previous cell.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 </section>
 <section id="id16">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <p>What do you think is a good value to estimate the coefficients? The mean, the median, …? Explain briefly and estimate the value of each coefficient in order to define a polynomial that defines the signal in a period. Then define the polynomial and plot it in the correct domain (the domain found in previous cells <code class="docutils literal notranslate"><span class="pre">polydomain</span></code>).</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 <div class="cell docutils container">
@@ -1703,12 +1704,12 @@ if (outputEl) {{
 </div>
 </section>
 </section>
-<section id="span-style-color-orange-brief-interpretation-of-some-relevant-ppg-signal-statistics-span">
-<h2><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span><a class="headerlink" href="#span-style-color-orange-brief-interpretation-of-some-relevant-ppg-signal-statistics-span" title="Permalink to this heading">#</a></h2>
+<section id="brief-interpretation-of-some-relevant-ppg-signal-statistics">
+<h2><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span><a class="headerlink" href="#brief-interpretation-of-some-relevant-ppg-signal-statistics" title="Link to this heading">#</a></h2>
 <p>Now that we have a good model for the behavior of each cycle, we can start asking questions of our model. The article <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3394104/pdf/CCR-8-14.pdf">On the Analysis of Fingertip Photoplethysmogram Signals</a> [1], gives several commonly used statistics which can be read from a photoplethysmogram. We will focus on just two of them: the <strong>systolic amplitude</strong> which is roughly proportional to blood flow, and the <strong>ratio b/a</strong> which is connected to arterial stiffness and can indicate exposure to lead and risk of heart disease.</p>
 <p>In order to compute these statistics remember the closed interval method from calculus 1, where you find all the critical numbers of a function within its interval, and plug those into the function to find the maximum and minimum values.</p>
 <section id="id17">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <p>Write a function which does the closed interval method from calculus 1, to a polynomial interpolant and returns the minimum and maximun values of the function on the interval.</p>
 <p><em>Hint: The Polynomial object which NumPy creates is very versatile. If you have a polynomial, you can find things like its roots, derivatives, domain and more. For example you can use the <code class="docutils literal notranslate"><span class="pre">roots()</span></code> and <code class="docutils literal notranslate"><span class="pre">deriv()</span></code> methods.</em></p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
@@ -1753,7 +1754,7 @@ if (outputEl) {{
 <p>The <strong>ratio b/a</strong> is based off the maximum and minimum values of the second derivative. Specifically, it is their ratio. Since the photoplethysmogram is concave up in some places and concave down in others, the maximum will be positive and the minimum will be negative. Since we are more familiar working with positive numbers, people usually compute , where is the minimum value of the second derivative and is the maximum value of the second derivative.</p>
 </section>
 <section id="id18">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <p>Write a function to compute the ratio b/a. You should still be able to reuse the function closed_interval.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3>
 <div class="cell docutils container">
@@ -1783,15 +1784,15 @@ systolic_amplitude y ratio_b_a; ask students to calculate it for the different w
 </div></blockquote>
 </section>
 </section>
-<section id="span-style-color-orange-introduction-to-linear-regression-span">
-<h2><span style="color:orange;"> Introduction to Linear Regression </span><a class="headerlink" href="#span-style-color-orange-introduction-to-linear-regression-span" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-linear-regression">
+<h2><span style="color:orange;"> Introduction to Linear Regression </span><a class="headerlink" href="#introduction-to-linear-regression" title="Link to this heading">#</a></h2>
 <section id="fitting-as-a-random-sample">
-<h3>Fitting as a Random Sample<a class="headerlink" href="#fitting-as-a-random-sample" title="Permalink to this heading">#</a></h3>
+<h3>Fitting as a Random Sample<a class="headerlink" href="#fitting-as-a-random-sample" title="Link to this heading">#</a></h3>
 <p>For this task we will use polynomial regression, but first we need to know about the linear model, particularly linear regression. There are different methods to fit the linear model to a set of training data, but the most popular is the least squares. This will be explained later.</p>
 <p>Before we discuss linear regression in more deapth, it is worthwhile to review a little about estimators</p>
 </section>
 <section id="estimators">
-<h3>Estimators<a class="headerlink" href="#estimators" title="Permalink to this heading">#</a></h3>
+<h3>Estimators<a class="headerlink" href="#estimators" title="Link to this heading">#</a></h3>
 <p>An estimator is a random variable <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> that can be viewed as a function of <span class="math notranslate nohighlight">\(X\)</span>, where <span class="math notranslate nohighlight">\(X=(X_1, X_2, ..., X_n)\)</span> are given observations, i.e. we can write <span class="math notranslate nohighlight">\(\hat{\theta}=g(X)\)</span>. Since the distribution of <span class="math notranslate nohighlight">\(X\)</span> depends on <span class="math notranslate nohighlight">\(\theta\)</span> then the same is true for the distribution of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>. Furthermore, we can say that <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> is an estimator of an unknown parameter <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <p>It is important to note that the mean and variance of an estimator are defined in the usual way, and we can denote them as <span class="math notranslate nohighlight">\(E_{\theta}\left[\hat{\theta}\right]\)</span> and <span class="math notranslate nohighlight">\(\text{var}_{\theta}\left[\hat{\theta}\right]\)</span> respectively. Note that the subscript indicates that they are functions of <span class="math notranslate nohighlight">\(\theta\)</span>, but for simplicity this can be omitted from the notation without clearly forgetting this dependence.</p>
 <p>When working with estimators, some basic concepts should be made clear:</p>
@@ -1807,7 +1808,7 @@ $<span class="math notranslate nohighlight">\(E\left[\tilde{\theta}^2\right] = b
 <p><strong>Note.</strong> A good estimator is one that keeps variance and bias as low as possible.</p>
 </section>
 <section id="linear-regression">
-<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h3>
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
 <p>Linear regression is a classic, simple, interpretable and quite important model in statistics and machine learning. This methodology allow us to build a model of the relation between two or more variables of interest from a set of available data.</p>
 <p>With just two variables, it is natural to attempt to build a linear model of the form
 $<span class="math notranslate nohighlight">\( y \approx \beta_0 + \beta_1x \)</span><span class="math notranslate nohighlight">\( 
@@ -1845,12 +1846,12 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p>
 </section>
 <section id="id19">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <p>Assume the simple linear regression model $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + \epsilon.\)</span><span class="math notranslate nohighlight">\(  In this model, the linear relationship tells us that for each increase \)</span>k<span class="math notranslate nohighlight">\( in the value of \)</span>x<span class="math notranslate nohighlight">\(, the conditional expectation of \)</span>y<span class="math notranslate nohighlight">\( increases by \)</span>\beta_1k$ plus a random error.
 Show this in mathematical terms using equations.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
 <section id="multiple-linear-regression">
-<h3>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h3>
+<h3>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Link to this heading">#</a></h3>
 <p>In mathematics it is great to generalize. So it’s nice to know what happens when you deal with more than two variables (<strong>multiple linear regression</strong>).</p>
 <p>If we have a vector of inputs <span class="math notranslate nohighlight">\(X^T = (X_1,X_2,...,X_p)\)</span>, and the idea is that we want to predict a real-valued output <span class="math notranslate nohighlight">\(Y\)</span>. Then, the linear regression model has the form</p>
 <div class="math notranslate nohighlight">
@@ -1888,7 +1889,7 @@ Y = \beta_0 + \sum_{j=1}^{p}X_j\beta_j + \epsilon.
 <p>where <span class="math notranslate nohighlight">\(\epsilon \sim N(0, \sigma^2)\)</span>, i.e. the error is a Gaussian random variable with zero mean and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 </section>
 <section id="polynomial-regression">
-<h3>Polynomial regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this heading">#</a></h3>
+<h3>Polynomial regression<a class="headerlink" href="#polynomial-regression" title="Link to this heading">#</a></h3>
 <p>Polynomial regression can be considered as a special case of multiple linear regression. This methodology allow us to build a model of the relation between the independent variable and the dependent variable, conditional expected value of <span class="math notranslate nohighlight">\(y\)</span>, which can be modeled as an nth-degree polynomial.
 $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + ... + \beta_nx^n + \epsilon.\)</span>$</p>
 <p>Polynomial regression fits a nonlinear model to the data, but as a statistical estimation problem is linear in the sense that the regression function <span class="math notranslate nohighlight">\(E(y | x)\)</span> is linear in the parameters.</p>
@@ -1897,11 +1898,11 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
 <p>In this case the variables <span class="math notranslate nohighlight">\(X_j\)</span> come from basis expasions, such as <span class="math notranslate nohighlight">\(X_1 = x, X_2 = {x}^2, X_3 = {x}^3, \,etc.\)</span></p>
 </section>
 <section id="id20">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <p>Why can polynomial regression be considered as a special case of multiple linear regression?</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
 <section id="id21">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <p>Suppose we have a problem that can be modeled as a quadratic model, so we can write
 $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + \beta_2x^2 + \epsilon.\)</span>$</p>
 <p><strong>Part 1:</strong> In this model, when we increase <span class="math notranslate nohighlight">\(x\)</span> by one unit, the conditional expectation of <span class="math notranslate nohighlight">\(y\)</span> increases by <span class="math notranslate nohighlight">\(\beta_1 + \beta_2(2x +1)\)</span> units. Show this.</p>
@@ -1914,20 +1915,20 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
 <p>A good practice in data preprocessing is <strong>standardization</strong> or <strong>normalization</strong>. It is not always necessary but in most cases and when using certain statistical models it is essential.</p>
 </section>
 <section id="id22">
-<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<h3><span style="color:red"> Exercise </span><a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <p><strong>Part 1:</strong> Find out what standardization or normalization is and why it is important and in which cases it is convenient to use each one.</p>
 <p><strong>Part 2:</strong>  Normalize the data recorded by the sensor and plot them.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise Below </h3></section>
 </section>
-<section id="span-style-color-green-reflection-span">
-<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#span-style-color-green-reflection-span" title="Permalink to this heading">#</a></h2>
+<section id="reflection">
+<h2><span style="color:green;"> Reflection </span><a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
 <p><strong>1. What parts of the lab, if any, do you feel you did well? <br>
 2. What are some things you learned today? <br>
 3. Are there any topics that could use more clarification? <br>
 4. Do you have any suggestions on parts of the lab to improve?</strong></p>
 <h3 style="background-color:lightblue"> Write Answers for the Reflection Below </h3></section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Elgendi M. On the analysis of fingertip photoplethysmogram signals. Curr Cardiol Rev. 2012 Feb;8(1):14-25. doi: 10.2174/157340312801215782.</p></li>
 <li><p>Junyung Park, Hyeon Seok Seok, Sang-Su Kim1 and Hangsik Shin. Photoplethysmogram Analysis and Applications: An Integrative Review. Front. Physiol., 01 March 2022. Sec. Vascular Physiology. <a class="reference external" href="https://doi.org/10.3389/fphys.2021.808451">https://doi.org/10.3389/fphys.2021.808451</a>.</p></li>
@@ -1963,7 +1964,7 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -1973,7 +1974,9 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1981,9 +1984,9 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-data-points-as-a-random-samples-heart-rate-estimation-span"><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-points-as-a-random-samples-heart-rate-estimation"><span style="color:orange;"> Data Points as a Random Samples: Heart Rate Estimation </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-acquisition">1. Data Acquisition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-firmware-onto-the-microcontroller">Loading firmware onto the microcontroller</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-rate-sensor">Heart Rate Sensor</a></li>
@@ -1992,7 +1995,7 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing">2. Pre-processing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-span"><span style="color:red"> Exercise </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><span style="color:red"> Exercise </span></a></li>
@@ -2018,12 +2021,12 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-brief-interpretation-of-some-relevant-ppg-signal-statistics-span"><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation-of-some-relevant-ppg-signal-statistics"><span style="color:orange;"> Brief Interpretation of some Relevant PPG Signal Statistics </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17"><span style="color:red"> Exercise </span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-introduction-to-linear-regression-span"><span style="color:orange;"> Introduction to Linear Regression </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression"><span style="color:orange;"> Introduction to Linear Regression </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-as-a-random-sample">Fitting as a Random Sample</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators">Estimators</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
@@ -2035,7 +2038,7 @@ $<span class="math notranslate nohighlight">\(y = E(y|x) = \beta_0 + \beta_1x + 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22"><span style="color:red"> Exercise </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-green-reflection-span"><span style="color:green;"> Reflection </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection"><span style="color:green;"> Reflection </span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
@@ -2085,8 +2088,8 @@ By Mireille Boutin, Alden Bradford
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

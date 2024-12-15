@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Week 1: Introduction &#8212; The Data Science Labs on Probability</title>
   
@@ -15,53 +14,52 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/1_intro_and_review/lab_00/lab_00_intro';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="About this Course" href="../../../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -78,32 +77,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -111,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -119,16 +101,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -143,6 +134,8 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../../../intro.html">
   
@@ -156,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Probability - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Probability - Home"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="The Data Science Labs on Probability - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -191,6 +191,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_07/lab_07_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_08/lab_08_pi.html">Week 11-12: Estimating Pi with a RNG</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../6_naive_bayes_classifier/naive_bayes_classifier.html">Week 13: Naive Bayes Classifiers</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
@@ -211,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -220,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -350,27 +354,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -391,25 +387,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-before-starting-span"><span style="color:orange;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:orange;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory Ethics</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-introduction-to-jupyter-notebooks-span"><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebooks"><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-cells">Two Types of Cells</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-skill-checks-span"><span style="color:orange;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks"><span style="color:orange;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-submitting-the-lab-span"><span style="color:orange;"> 4. Submitting the Lab <span></span></span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:orange;"> 4. Submitting the Lab <span></span></span></a></li>
 </ul>
             </nav>
         </div>
@@ -419,14 +415,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-1-introduction">
-<h1>Week 1: Introduction<a class="headerlink" href="#week-1-introduction" title="Permalink to this heading">#</a></h1>
+<h1>Week 1: Introduction<a class="headerlink" href="#week-1-introduction" title="Link to this heading">#</a></h1>
 <p><font size="6"> Laboratory 0 </font> <br>
 <font size="3"> Last updated July 17, 2023 </font></p>
-<section id="span-style-color-orange-00-content-span">
-<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#span-style-color-orange-00-content-span" title="Permalink to this heading">#</a></h2>
+<section id="content">
+<h2><span style="color:orange;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
 <p><font size="5"> Mathematics </font></p>
 <ul class="simple">
 <li><p>N/A</p></li>
@@ -441,8 +437,8 @@ document.write(`
 <li><p>N/A</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-0-required-hardware-span">
-<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#span-style-color-orange-0-required-hardware-span" title="Permalink to this heading">#</a></h2>
+<section id="required-hardware">
+<h2><span style="color:orange;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Breadboard</p></li>
 <li><p>5 Wires</p></li>
@@ -452,25 +448,25 @@ document.write(`
 <li><p>220 ohm resistor</p></li>
 </ul>
 </section>
-<section id="span-style-color-orange-1-before-starting-span">
-<h2><span style="color:orange;"> 1. Before Starting </span><a class="headerlink" href="#span-style-color-orange-1-before-starting-span" title="Permalink to this heading">#</a></h2>
+<section id="before-starting">
+<h2><span style="color:orange;"> 1. Before Starting </span><a class="headerlink" href="#before-starting" title="Link to this heading">#</a></h2>
 <p>Before starting this course, please navigate to Brightspace and read through the syllabus.</p>
 <p>Once you have completed that, we will proceed to set up a folder for organizational purposes. This folder will be used to store all files throughout the course. To create the folder, go to the Home directory and right-click to add a new folder. Choose a name that is easy to locate, such as <code class="docutils literal notranslate"><span class="pre">DSLab_Probability</span></code>. If you want the folder to appear at the top of the list and be even more accessible, you can add a tilde (<code class="docutils literal notranslate"><span class="pre">~</span></code>) at the beginning of the chosen name.</p>
 <p>From now on, save all files, including those downloaded through links during labs, to this folder. This practice will make it much easier to find everything, especially when submitting labs at the end of each class. When you click on a file link, it will redirect you to the corresponding GitHub page. To download and save the file to your folder, click on the <em>“Download raw file”</em> button located at the top right of the file preview (it should look like a normal download button).</p>
 <section id="laboratory-ethics">
-<h3>Laboratory Ethics<a class="headerlink" href="#laboratory-ethics" title="Permalink to this heading">#</a></h3>
+<h3>Laboratory Ethics<a class="headerlink" href="#laboratory-ethics" title="Link to this heading">#</a></h3>
 <p>Be sure to read and follow this pledge.</p>
 <p>“I pledge to behave ethically and with honesty in this course. I may discuss approaches for a solution with others, but my submitted lab report will be my own work, including all code. I will not make my finished reports available to other students, even after the semester is over. In particular, I will not post my labs on the Internet or make my files available to other people. I will not be a cheater.”</p>
 </section>
 </section>
-<section id="span-style-color-orange-2-introduction-to-jupyter-notebooks-span">
-<h2><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span><a class="headerlink" href="#span-style-color-orange-2-introduction-to-jupyter-notebooks-span" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-jupyter-notebooks">
+<h2><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span><a class="headerlink" href="#introduction-to-jupyter-notebooks" title="Link to this heading">#</a></h2>
 <p>Hover your mouse over the blue banner and double-click to edit the contents of this cell.</p>
 <h3 style="background-color:lightblue"> Write your name and email below: </h3>
 <p><strong>Name:</strong></p>
 <p><strong>Email:</strong></p>
 <section id="two-types-of-cells">
-<h3>Two Types of Cells<a class="headerlink" href="#two-types-of-cells" title="Permalink to this heading">#</a></h3>
+<h3>Two Types of Cells<a class="headerlink" href="#two-types-of-cells" title="Link to this heading">#</a></h3>
 <p>The application you are currently using is a Jupyter Notebook (formerly IPython Notebook). A Jupyter Notebook consists of two types of cells: <em>Markdown</em> cells and <em>Code</em> cells. Markdown cells are used to present text in a nicely-formatted manner for readers, while code cells display code in a well-formatted structure intended for both humans and computers to comprehend. The text you are currently reading belongs to a markdown cell. The code cell below, displayed in gray, serves as an example of a code cell. When you execute the code cell, each line of code is sequentially executed, and the output of the last line is displayed beneath the cell. To execute cells, simply press the <code class="docutils literal notranslate"><span class="pre">Shift</span></code> key while simultaneously pressing the <code class="docutils literal notranslate"><span class="pre">Enter</span></code> key (<code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -482,7 +478,7 @@ document.write(`
 </div>
 </section>
 <section id="markdown">
-<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">#</a></h3>
+<h3>Markdown<a class="headerlink" href="#markdown" title="Link to this heading">#</a></h3>
 <p>Throughout the semester, you will write your answers to exercises directly in this interactive textbook. Some answers will be strictly Python code, while others require nicely formatted text.</p>
 <p>Double-click in this cell to see some common markdown commands.</p>
 <ol class="arabic simple">
@@ -496,33 +492,33 @@ with a line break</p></li>
 <li><p>Markdown can be used to write mathematical expressions and equations with <span class="math notranslate nohighlight">\(\LaTeX\)</span> like <span class="math notranslate nohighlight">\((xy)^n = x^n y^n\)</span></p></li>
 </ul>
 </section>
-<section id="span-style-color-red-exercise-1-span">
-<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#span-style-color-red-exercise-1-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
 <p>You can use the <em>“+”</em> button at the top of the document to insert a cell. Inside a cell, you can use the dropdown menu to the right of the plus button to switch between code and markdown.</p>
 <p><strong>Part 1:</strong> Add a markdown cell and type a short message.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise 1 Part 1 Below </h3><p><strong>Part 2:</strong> Convert the markdown cell below to a code cell and run it.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise 1 Part 2 Below </h3><p>1+2*5       # change me to code</p>
 </section>
 </section>
-<section id="span-style-color-orange-3-skill-checks-span">
-<h2><span style="color:orange;"> 3. Skill Checks <span><a class="headerlink" href="#span-style-color-orange-3-skill-checks-span" title="Permalink to this heading">#</a></h2>
+<section id="skill-checks">
+<h2><span style="color:orange;"> 3. Skill Checks <span><a class="headerlink" href="#skill-checks" title="Link to this heading">#</a></h2>
 <p>If you’re unfamiliar with <span class="math notranslate nohighlight">\(\LaTeX\)</span>, here’s a <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/extra_materials/intro_to_latex/intro_to_latex.ipynb">short refresher</a>. This link will take you to Jupyter Notebook within the Probabilty Labs GitHub repository. To download the notebook, click on the <em>“Download raw file”</em> button on the right.</p>
-<section id="span-style-color-red-exercise-2-span">
-<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#span-style-color-red-exercise-2-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
 <p>Write the formula for the Gaussian integral from the <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_integral">Wikipedia page</a> using <span class="math notranslate nohighlight">\(\LaTeX\)</span>.</p>
 <p><em>Hint: <a class="reference external" href="http://detexify.kirelabs.org/classify.html">Detexify</a> is a nice tool to help you find the command for a symbol.</em></p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise 2 Below </h3></section>
-<section id="span-style-color-red-exercise-3-span">
-<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#span-style-color-red-exercise-3-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
 <p>Import the two libraries <em>NumPy</em> and <em>matplotlib.pyplot</em> and rename them as <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">plt</span></code>, respectively.</p>
 <h3 style="background-color:lightblue"> Write Answer for Exercise 3 Below </h3></section>
-<section id="span-style-color-red-exercise-4-span">
-<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#span-style-color-red-exercise-4-span" title="Permalink to this heading">#</a></h3>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
 <p>Download this <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/extra_materials/intro_to_breadboards/intro_to_breadboards.ipynb">Jupyter Notebook</a> and complete the exercise on wiring an LED on a breadboard.</p>
 </section>
 </section>
-<section id="span-style-color-orange-4-submitting-the-lab-span">
-<h2><span style="color:orange;"> 4. Submitting the Lab <span><a class="headerlink" href="#span-style-color-orange-4-submitting-the-lab-span" title="Permalink to this heading">#</a></h2>
+<section id="submitting-the-lab">
+<h2><span style="color:orange;"> 4. Submitting the Lab <span><a class="headerlink" href="#submitting-the-lab" title="Link to this heading">#</a></h2>
 <p>Once you have finished the first lab, you will need to submit it.</p>
 <p>Before you submit, ensure everything is filled out and saved (either by typing <code class="docutils literal notranslate"><span class="pre">Ctrl+S</span></code> or by clicking the floppy disk icon in the top left of this application).</p>
 <p>Now, follow these steps:</p>
@@ -570,7 +566,7 @@ with a line break</p></li>
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -598,7 +594,9 @@ with a line break</p></li>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -606,25 +604,25 @@ with a line break</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-00-content-span"><span style="color:orange;"> 00. Content </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-0-required-hardware-span"><span style="color:orange;"> 0. Required Hardware </span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-1-before-starting-span"><span style="color:orange;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:orange;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:orange;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:orange;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory Ethics</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-2-introduction-to-jupyter-notebooks-span"><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebooks"><span style="color:orange;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-cells">Two Types of Cells</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-1-span"><span style="color:red"> Exercise 1 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-3-skill-checks-span"><span style="color:orange;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-2-span"><span style="color:red"> Exercise 2 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-3-span"><span style="color:red"> Exercise 3 </span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-red-exercise-4-span"><span style="color:red"> Exercise 4 </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks"><span style="color:orange;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-style-color-orange-4-submitting-the-lab-span"><span style="color:orange;"> 4. Submitting the Lab <span></span></span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:orange;"> 4. Submitting the Lab <span></span></span></a></li>
 </ul>
   </nav></div>
 
@@ -673,8 +671,8 @@ By Mireille Boutin, Alden Bradford
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
