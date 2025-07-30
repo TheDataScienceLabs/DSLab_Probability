@@ -15,9 +15,9 @@ Purdue Students: You have the opportunity to earn Honors credit for ECE302, MA41
 ## More Information and Contact
 
 For more information regarding this and the other available Data Science Labs, visit the following link:
-https://engineering.purdue.edu/~mboutin/Data_Science_labs.html
+https://www.math.purdue.edu/~kthood/DSLabs.html
 
-If you have any further questions about this course, feel free to contact Professor Boutin at mboutin@purdue.edu.
+If you have any further questions about this course, feel free to contact Professor Hood at kthood@purdue.edu.
 
 ## How to Get Started
 
@@ -28,6 +28,11 @@ To get started with this course, click the next arrow at the bottom right of thi
 We recommend downloading the lab file by clicking the download icon in the top right of the screen and saving the `.ipynb` version of Lab 0. After downloading, open the JupyterLab application. This will bring you to a screen with files and a Table of Contents on the left side, and the screen on the right side. If it's not already open, click on the folder icon in the top left corner to open the files directory. Navigate to the _"Downloads"_ folder, and double-click on the `lab_0.ipynb` file. This will open Lab 0 in JupyterLab, where you can follow the directions in the lab to begin.
 
 When it's time to submit the labs on Gradescope, you must provide the file as a PDF. Further instructions on how to do this will be provided in Lab 0.
+
+---
+**License**  
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).  
+![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)
 
 If you have any questions or encounter difficulties during the labs, don't hesitate to ask the instructor for assistance.
 
