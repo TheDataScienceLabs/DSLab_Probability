@@ -29,13 +29,13 @@ We recommend downloading the lab file by clicking the download icon in the top r
 
 When it's time to submit the labs on Gradescope, you must provide the file as a PDF. Further instructions on how to do this will be provided in Lab 0.
 
+## Acknowledgements
+
+The development of this course was supported by Purdue's Elmore Family School of Electrical and Computer Engineering and the Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support.
+
 ---
 **License**  
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).  
 ![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)
 
 If you have any questions or encounter difficulties during the labs, don't hesitate to ask the instructor for assistance.
-
-## Acknowledgements
-
-The development of this course was supported by Purdue's Elmore Family School of Electrical and Computer Engineering and the Department of Mathematics. We thank Prof. Alina Alexeenko, Prof. Kristina Bross, Prof. Milind Kulkarni, Prof. Uli Walther, and Dr. Natasha Duncan for their invaluable input and support.
