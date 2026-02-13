@@ -27,19 +27,23 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install jupyter-book
 
       # Build the book
       - name: Build the book
         run: |
-          jupyter-book build book
+          python --version
+          jupyter-book --version
+          jupyter-book build book --verbose
 
       # Debug build output
       - name: Debug build output
         run: |
           ls -la book
           ls -la book/_build || true
-          ls -la book/_build/html || true
+          find book -maxdepth 4 -type f -name "index.html" -print
 
       # Deploy the book's HTML to gh-pages branch
       - name: GitHub Pages action
