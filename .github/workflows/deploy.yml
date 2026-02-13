@@ -36,9 +36,26 @@ jobs:
       # Build the book
       - name: Build the book
         run: |
+          set -e
           python --version
           jupyter-book --version
-          jupyter-book build book 
+          jupyter-book build book 2>&1 | tee jb_build.log
+
+      # Upload a build log
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jb-build-log
+          path: jb_build.log
+
+      # Debug build tree
+      - name: Debug build tree
+        if: always()
+        run: |
+          ls -la book
+          find book -maxdepth 3 -type d -print
+          find book -maxdepth 5 -type f -name "*.log" -print
 
       # Verify build site exists
       - name: Verify build site exists
