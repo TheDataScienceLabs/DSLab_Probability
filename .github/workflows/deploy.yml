@@ -40,6 +40,20 @@ jobs:
           jupyter-book --version
           jupyter-book build book 
 
+      # Verify build site exists
+      - name: Verify build site exists
+        run: |
+          test -f book/_build/html/index.html
+          echo "Found book/_build/html/index.html"
+          ls -la book/_build/html | head
+
+      # Debug publish_dir
+      - name: Debug publish_dir
+        run: |
+          ls -la book/_build || true
+          ls -la book/_build/html || true
+          find book/_build/html -maxdepth 2 -type f | head -n 30 || true
+
       # Debug build output
       - name: Debug build output
         if: always()
