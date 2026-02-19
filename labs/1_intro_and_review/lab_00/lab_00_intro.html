@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 1: Introduction &#8212; The Data Science Labs on Probability</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4bca2e18" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'labs/1_intro_and_review/lab_00/lab_00_intro';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Week 2: Review of Python" href="../lab_01/lab_01_py_review.html" />
+    <link rel="prev" title="About this Course" href="../../../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="The Data Science Labs on Probability - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="The Data Science Labs on Probability - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    About this Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction and Review</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lab_01/lab_01_py_review.html">Week 2: Review of Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Frequency</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../2_frequency/lab_02/lab_02_prob_freq.html">Week 3-4: Probability as a Frequency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../2_frequency/lab_03/lab_03_quantization.html">Week 5-6: Image Quantization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Video</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../3_video/lab_04/lab_04_video_intro.html">Week 7: Acquiring and Manipulating Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../3_video/lab_05/lab_05_motion.html">Week 8: Motion Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">RNG</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_06/lab_06_rng.html">Week 9: Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_07/lab_07_testing_rng.html">Week 10: Evaluating Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../4_rng/lab_08/lab_08_pi.html">Week 11-12: Estimating Pi with a RNG</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../6_naive_bayes_classifier/naive_bayes_classifier.html">Week 13: Naive Bayes Classifiers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_breadboards/intro_to_breadboards.html">Introduction to Breadboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/intro_to_latex/intro_to_latex.html">Introduction to <span class="math notranslate nohighlight">\(\LaTeX\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extra_materials/pico_datasheet/pico_datasheet.html">Raspberry Pi Pico Pinout</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/TheDataScienceLabs/DSLab_Probability/issues/new?title=Issue%20on%20page%20%2Flabs/1_intro_and_review/lab_00/lab_00_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/labs/1_intro_and_review/lab_00/lab_00_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 1: Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:#d97f00;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory Ethics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebooks"><span style="color:#d97f00;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-cells">Two Types of Cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks"><span style="color:#d97f00;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:#d97f00;"> 4. Submitting the Lab <span></span></span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-introduction">
+<h1>Week 1: Introduction<a class="headerlink" href="#week-1-introduction" title="Link to this heading">#</a></h1>
+<p><font size="6"> Laboratory 0 </font> <br>
+<font size="3"> Last updated July 17, 2023 </font></p>
+<section id="content">
+<h2><span style="color:#d97f00;"> 00. Content </span><a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
+<p><font size="5"> Mathematics </font></p>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+<p><font size="5"> Programming Skills </font></p>
+<ul class="simple">
+<li><p>Importing libraries</p></li>
+<li><p>Latex</p></li>
+</ul>
+<p><font size="5"> Embedded Systems </font></p>
+<ul class="simple">
+<li><p>N/A</p></li>
+</ul>
+</section>
+<section id="required-hardware">
+<h2><span style="color:#d97f00;"> 0. Required Hardware </span><a class="headerlink" href="#required-hardware" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Breadboard</p></li>
+<li><p>5 Wires</p></li>
+<li><p>LED</p></li>
+<li><p>9V battery</p></li>
+<li><p>Voltage Regulator IC (LM 7805)</p></li>
+<li><p>220 ohm resistor</p></li>
+</ul>
+</section>
+<section id="before-starting">
+<h2><span style="color:#d97f00;"> 1. Before Starting </span><a class="headerlink" href="#before-starting" title="Link to this heading">#</a></h2>
+<p>Before starting this course, please navigate to Brightspace and read through the syllabus.</p>
+<p>Once you have completed that, we will proceed to set up a folder for organizational purposes. This folder will be used to store all files throughout the course. To create the folder, go to the Home directory and right-click to add a new folder. Choose a name that is easy to locate, such as <code class="docutils literal notranslate"><span class="pre">DSLab_Probability</span></code>. If you want the folder to appear at the top of the list and be even more accessible, you can add a tilde (<code class="docutils literal notranslate"><span class="pre">~</span></code>) at the beginning of the chosen name.</p>
+<p>From now on, save all files, including those downloaded through links during labs, to this folder. This practice will make it much easier to find everything, especially when submitting labs at the end of each class. When you click on a file link, it will redirect you to the corresponding GitHub page. To download and save the file to your folder, click on the <em>“Download raw file”</em> button located at the top right of the file preview (it should look like a normal download button).</p>
+<section id="laboratory-ethics">
+<h3>Laboratory Ethics<a class="headerlink" href="#laboratory-ethics" title="Link to this heading">#</a></h3>
+<p>Be sure to read and follow this pledge.</p>
+<p>“I pledge to behave ethically and with honesty in this course. I may discuss approaches for a solution with others, but my submitted lab report will be my own work, including all code. I will not make my finished reports available to other students, even after the semester is over. In particular, I will not post my labs on the Internet or make my files available to other people. I will not be a cheater.”</p>
+</section>
+</section>
+<section id="introduction-to-jupyter-notebooks">
+<h2><span style="color:#d97f00;"> 2. Introduction to Jupyter Notebooks </span><a class="headerlink" href="#introduction-to-jupyter-notebooks" title="Link to this heading">#</a></h2>
+<p>Hover your mouse over the blue banner and double-click to edit the contents of this cell.</p>
+<h3 style="background-color:#6994a2"> Write your name and email below: </h3>
+<p><strong>Name:</strong></p>
+<p><strong>Email:</strong></p>
+<section id="two-types-of-cells">
+<h3>Two Types of Cells<a class="headerlink" href="#two-types-of-cells" title="Link to this heading">#</a></h3>
+<p>The application you are currently using is a Jupyter Notebook (formerly IPython Notebook). A Jupyter Notebook consists of two types of cells: <em>Markdown</em> cells and <em>Code</em> cells. Markdown cells are used to present text in a nicely-formatted manner for readers, while code cells display code in a well-formatted structure intended for both humans and computers to comprehend. The text you are currently reading belongs to a markdown cell. The code cell below, displayed in gray, serves as an example of a code cell. When you execute the code cell, each line of code is sequentially executed, and the output of the last line is displayed beneath the cell. To execute cells, simply press the <code class="docutils literal notranslate"><span class="pre">Shift</span></code> key while simultaneously pressing the <code class="docutils literal notranslate"><span class="pre">Enter</span></code> key (<code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is a code cell</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Link to this heading">#</a></h3>
+<p>Throughout the semester, you will write your answers to exercises directly in this interactive textbook. Some answers will be strictly Python code, while others require nicely formatted text.</p>
+<p>Double-click in this cell to see some common markdown commands.</p>
+<ol class="arabic simple">
+<li><p>numbered list item 1</p></li>
+<li><p>numbered list item 2</p></li>
+</ol>
+<ul class="simple">
+<li><p>list item</p></li>
+<li><p>another list item <br />
+with a line break</p></li>
+<li><p>Markdown can be used to write mathematical expressions and equations with <span class="math notranslate nohighlight">\(\LaTeX\)</span> like <span class="math notranslate nohighlight">\((xy)^n = x^n y^n\)</span></p></li>
+</ul>
+</section>
+<section id="exercise-1">
+<h3><span style="color:red"> Exercise 1 </span><a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<p>You can use the <em>“+”</em> button at the top of the document to insert a cell. Inside a cell, you can use the dropdown menu to the right of the plus button to switch between code and markdown.</p>
+<p><strong>Part 1:</strong> Add a markdown cell and type a short message.</p>
+<h3 style="background-color:#6994a2"> Write Answer for Exercise 1 Part 1 Below </h3><p><strong>Part 2:</strong> Convert the markdown cell below to a code cell and run it.</p>
+<h3 style="background-color:#6994a2"> Write Answer for Exercise 1 Part 2 Below </h3><p>1+2*5       # change me to code</p>
+</section>
+</section>
+<section id="skill-checks">
+<h2><span style="color:#d97f00;"> 3. Skill Checks <span><a class="headerlink" href="#skill-checks" title="Link to this heading">#</a></h2>
+<p>If you’re unfamiliar with <span class="math notranslate nohighlight">\(\LaTeX\)</span>, here’s a <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/extra_materials/intro_to_latex/intro_to_latex.ipynb">short refresher</a>. This link will take you to Jupyter Notebook within the Probabilty Labs GitHub repository. To download the notebook, click on the <em>“Download raw file”</em> button on the right.</p>
+<section id="exercise-2">
+<h3><span style="color:red"> Exercise 2 </span><a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<p>Write the formula for the Gaussian integral from the <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_integral">Wikipedia page</a> using <span class="math notranslate nohighlight">\(\LaTeX\)</span>.</p>
+<p><em>Hint: <a class="reference external" href="http://detexify.kirelabs.org/classify.html">Detexify</a> is a nice tool to help you find the command for a symbol.</em></p>
+<h3 style="background-color:#6994a2"> Write Answer for Exercise 2 Below </h3></section>
+<section id="exercise-3">
+<h3><span style="color:red"> Exercise 3 </span><a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
+<p>Import the two libraries <em>NumPy</em> and <em>matplotlib.pyplot</em> and rename them as <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">plt</span></code>, respectively.</p>
+<h3 style="background-color:#6994a2"> Write Answer for Exercise 3 Below </h3></section>
+<section id="exercise-4">
+<h3><span style="color:red"> Exercise 4 </span><a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
+<p>Download this <a class="reference external" href="https://github.com/TheDataScienceLabs/DSLab_Probability/blob/main/book/extra_materials/intro_to_breadboards/intro_to_breadboards.ipynb">Jupyter Notebook</a> and complete the exercise on wiring an LED on a breadboard.</p>
+</section>
+</section>
+<section id="submitting-the-lab">
+<h2><span style="color:#d97f00;"> 4. Submitting the Lab <span><a class="headerlink" href="#submitting-the-lab" title="Link to this heading">#</a></h2>
+<p>Once you have finished the first lab, you will need to submit it.</p>
+<p>Before you submit, ensure everything is filled out and saved (either by typing <code class="docutils literal notranslate"><span class="pre">Ctrl+S</span></code> or by clicking the floppy disk icon in the top left of this application).</p>
+<p>Now, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Navigate to <em>“File”</em> in the top left of the screen and find <em>“Save and Export Notebook As…”</em>. Once the drop-down comes up, click on <em>“HTML”</em>.</p></li>
+<li><p>The html file will now be saved in the <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder. Open the html file in the web browser by double-clicking on the file in <code class="docutils literal notranslate"><span class="pre">Downloads</span></code>.</p></li>
+<li><p>Once the html file has been opened in the browser, right-click anywhere on the window and choose <em>“Print…”</em> or use <code class="docutils literal notranslate"><span class="pre">Ctrl+P</span></code> to open the print window.</p></li>
+<li><p>For <em>“Destination”</em>, select <em>“Save as PDF”</em> in the drop down menu and click <em>“Save”</em>.</p></li>
+<li><p>Turn in the PDF through Brightspace.</p></li>
+<li><p>Assign the listed exercise numbers to the correct pages of the PDF you are uploading and hit the <em>“Submit”</em> button.</p></li>
+</ol>
+<p>Once you’ve submitted Lab 0, you are done and are free to leave!</p>
+<hr class="docutils" />
+<p><strong>NOTE</strong></p>
+<p>You are expected to submit the lab every week before the end of class (unless the lab specifies otherwise).</p>
+<p>If you find yourself running short on time to complete a lab within the given time, please communicate with your TA. However, make sure to submit your partially completed lab by the end of class as per the usual submission process.</p>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./labs/1_intro_and_review/lab_00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">About this Course</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../lab_01/lab_01_py_review.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 2: Review of Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content"><span style="color:#d97f00;"> 00. Content </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-hardware"><span style="color:#d97f00;"> 0. Required Hardware </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-starting"><span style="color:#d97f00;"> 1. Before Starting </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laboratory-ethics">Laboratory Ethics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebooks"><span style="color:#d97f00;"> 2. Introduction to Jupyter Notebooks </span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-cells">Two Types of Cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1"><span style="color:red"> Exercise 1 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-checks"><span style="color:#d97f00;"> 3. Skill Checks <span></span></span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2"><span style="color:red"> Exercise 2 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3"><span style="color:red"> Exercise 3 </span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4"><span style="color:red"> Exercise 4 </span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-lab"><span style="color:#d97f00;"> 4. Submitting the Lab <span></span></span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mireille Boutin, Alden Bradford
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This work is licensed under a 
+<a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
